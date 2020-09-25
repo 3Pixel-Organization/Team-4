@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2713a4ae7b1100c44bf64b131fae21aa, type: 3}
   m_Name: DashDefault
   m_EditorClassIdentifier: 
-  duration: 0
-  distance: 0
+  duration: 0.1
+  distance: 5
