@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+[CreateAssetMenu(menuName = "Item/item")]
+public class Item : ScriptableObject
 {
 	public string name;
 	public int level;
+	public int value;
 	public ItemRarity rarity;
-
-	public Item(string name, int level, ItemRarity rarity)
-	{
-		this.name = name;
-		this.level = level;
-		this.rarity = rarity;
-	}
+	public GameObject model;
 }
-
 
 public enum ItemRarity
 {
