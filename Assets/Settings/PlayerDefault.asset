@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 100
   maxSpeed: 7.5
-  moveDampening: 1
+  moveDampening: 4
   jumpForce: 300

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	public CameraSettings settings;
+	[SerializeField]
+	private CameraSettings settings;
 
 	public GameObject followObj;
 
@@ -17,7 +18,8 @@ public class CameraController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		transform.position = followObj.transform.position + settings.objOffset;
+		transform.position = Vector3.Lerp(transform.position, followObj.transform.position + settings.objOffset, settings.followBias * Time.deltaTime);
+		//transform.position = followObj.transform.position + settings.objOffset;
 		transform.eulerAngles = settings.cameraAngle;
 	}
 }
