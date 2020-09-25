@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe78590e22bb2844b920bde654ff248a, type: 3}
   m_Name: PlayerDefault
   m_EditorClassIdentifier: 
-  movementSpeed: 100
+  movementSpeed: 50
   maxSpeed: 7.5
   moveDampening: 4
   jumpForce: 300
