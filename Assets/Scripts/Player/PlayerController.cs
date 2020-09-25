@@ -6,10 +6,15 @@ using UnityEngine.Tilemaps;
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField]
+	private Joystick joystick;
+
+	[SerializeField]
 	private PlayerSettings playerSettings;
 
 	[SerializeField]
 	private DashSettings dashSettings;
+
+	public ParticleSystem dashParticles;
 
 	private Vector2 direction;
 	public Vector2 Direction { get => direction; }
@@ -33,8 +38,9 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		direction = new Vector2(-Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"));
-		if(direction.magnitude != 0)//if the user is giving direction input
+		//direction = new Vector2(-Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"));
+		direction = new Vector2(-joystick.Vertical + joystick.Horizontal, joystick.Vertical + joystick.Horizontal);
+		if (direction.magnitude != 0)//if the user is giving direction input
 		{
 			playerDirection = direction.normalized;
 		}
@@ -60,6 +66,7 @@ public class PlayerController : MonoBehaviour
 		Vector3 velocityToAdd = new Vector3(direction.x, 0, direction.y) * Time.deltaTime * playerSettings.movementSpeed;
 		rb.velocity += velocityToAdd;
 		rb.velocity -= Vector3.Lerp(Vector3.zero, rb.velocity, playerSettings.moveDampening * Time.deltaTime);
+
 		float totalSpeed = new Vector2(Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.z)).magnitude;
 
 		if (totalSpeed >= playerSettings.maxSpeed)
@@ -67,9 +74,17 @@ public class PlayerController : MonoBehaviour
 			float difference = playerSettings.maxSpeed / totalSpeed;
 			rb.velocity = new Vector3(rb.velocity.x * difference, rb.velocity.y, rb.velocity.z * difference);
 		}
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space))//jumping currently deactivated
 		{
 			rb.AddForce(Vector3.up * playerSettings.jumpForce);
+		}
+	}
+
+	public void TriggerDash()
+	{
+		if (!isDashing)
+		{
+			StartDash();
 		}
 	}
 
@@ -81,6 +96,7 @@ public class PlayerController : MonoBehaviour
 		dashStartPos = transform.position;
 		dashEndPos = transform.position + (new Vector3(playerDirection.x, 0, playerDirection.y) * dashSettings.distance);
 		dashTimer = 0;
+		dashParticles.Play();
 	}
 
 	void DashUpdate()
