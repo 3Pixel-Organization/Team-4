@@ -24,7 +24,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7511705-e60b-410f-a804-9e65afa847b6" name="Default Changelist" comment="" />
+    <list default="true" id="d7511705-e60b-410f-a804-9e65afa847b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Dev test scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Dev test scene.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,13 +38,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Damage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Health/Delegates.cs" />
         <option value="$PROJECT_DIR$/Assets/Damage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Health/Damage.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Health/HealthController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" />
       </list>
     </option>
   </component>
@@ -50,6 +57,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -84,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601099801027</updated>
       <workItem from="1601099803575" duration="1329000" />
-      <workItem from="1601105473990" duration="790000" />
+      <workItem from="1601105473990" duration="10511000" />
     </task>
     <servers />
   </component>

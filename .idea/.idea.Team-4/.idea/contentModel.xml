@@ -46,6 +46,7 @@
           <e p="Health" t="Include">
             <e p="Damage.cs" t="Include" />
             <e p="Delegates.cs" t="Include" />
+            <e p="HealthBar.cs" t="Include" />
             <e p="HealthController.cs" t="Include" />
           </e>
           <e p="Inventory" t="Include">
