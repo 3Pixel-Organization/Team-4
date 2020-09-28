@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30ac3cc58045151458f9ff59e00e1419
+guid: 62ba0fddfda3ccc40a439f8d93d76556
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable: []
@@ -13,6 +13,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CommonMaterialEmission
+    second: {fileID: 2100000, guid: c078f9428a7cd3342944e3ee64e6e712, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CommonMaterialEmmision.001
     second: {fileID: 2100000, guid: c078f9428a7cd3342944e3ee64e6e712, type: 2}
   - first:
       type: UnityEngine:Material
