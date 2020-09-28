@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c6ac83fcc66a446931dfcbacccbc25, type: 3}
   m_Name: CameraDefault
   m_EditorClassIdentifier: 
-  objOffset: {x: 4, y: 4.6, z: -4}
+  objOffset: {x: 40, y: 40, z: -40}
   cameraAngle: {x: 34.74, y: -45, z: 0}
   followBias: 10
