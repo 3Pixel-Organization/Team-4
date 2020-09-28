@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DashDefault
   m_EditorClassIdentifier: 
   duration: 0.1
-  distance: 5
+  distance: 7.5
