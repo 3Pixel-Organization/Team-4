@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Health
 {
@@ -7,17 +10,42 @@ namespace Health
       /// <summary>
       /// Example implementation of Damage Script 
       /// </summary>
-      [SerializeField]private int damageAmt;
+      [SerializeField] private int damageAmt;
+
+      [SerializeField] private float checkSphereRadius = 1f;
+      [SerializeField] private float checkFrequency = 2f;
       private HealthController _healthController;
 
-      private void OnCollisionEnter(Collision other)
+      
+
+      private void FixedUpdate()
       {
-         _healthController = other.gameObject.GetComponent<HealthController>();
-         if (_healthController != null)
+         StartCoroutine(GiveDamage());
+        
+      }
+
+      public IEnumerator GiveDamage()
+      {
+         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius);
+         foreach (var index in colliders)
          {
-            _healthController.Damage(damageAmt);
+            if (index.transform != transform)
+            {
+               _healthController = index.gameObject.GetComponent<HealthController>();
+               if (_healthController != null)
+               {
+                  _healthController.Damage(damageAmt);
+                  Debug.Log(gameObject.name + " Does " + damageAmt + " To " + index.name);
+               }
+            }
          }
-   
+         yield return new WaitForSeconds(checkFrequency);
+      }
+
+      private void OnDrawGizmos()
+      {
+         Gizmos.DrawWireSphere(transform.position,checkSphereRadius);
+         
       }
    }
 }

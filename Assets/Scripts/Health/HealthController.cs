@@ -5,7 +5,7 @@ namespace Health
     /// <summary>
     /// Used to manage entity health.
     /// </summary>
-    [DisallowMultipleComponent]
+    
     public class HealthController : MonoBehaviour
     {
         private int _currentHealth = 100;
@@ -143,7 +143,7 @@ namespace Health
                 ResetDamageCooldownTimer();
             }
 
-            Debug.Log(CurrentHealth);
+           // Debug.Log(CurrentHealth);
         }
 
         protected virtual void OnHealthChange(int currentHealth, int maxHealth, int healthDelta)
