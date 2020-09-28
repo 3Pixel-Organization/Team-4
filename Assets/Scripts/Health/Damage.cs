@@ -1,32 +1,51 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Health
 {
    public class Damage : MonoBehaviour
    {
-	  /// <summary>
-	  /// Example implementation of Damage Script 
-	  /// </summary>
-	  [SerializeField]private int damageAmt;
-	  private HealthController _healthController;
+      /// <summary>
+      /// Example implementation of Damage Script 
+      /// </summary>
+      [SerializeField] private int damageAmt;
 
-	  private void OnCollisionEnter(Collision other)
-	  {
-		 _healthController = other.gameObject.GetComponent<HealthController>();
-		 if (_healthController != null)
-		 {
-			_healthController.Damage(damageAmt);
-		 }
-   
-	  }
+      [SerializeField] private float checkSphereRadius = 1f;
+      [SerializeField] private float checkFrequency = 2f;
+      private HealthController _healthController;
 
-		private void OnTriggerEnter(Collider other)
-		{
-			_healthController = other.gameObject.GetComponent<HealthController>();
-			if (_healthController != null)
-			{
-				_healthController.Damage(damageAmt);
-			}
-		}
-	}
+      
+
+      private void FixedUpdate()
+      {
+         StartCoroutine(GiveDamage());
+        
+      }
+
+      public IEnumerator GiveDamage()
+      {
+         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius);
+         foreach (var index in colliders)
+         {
+            if (index.transform != transform)
+            {
+               _healthController = index.gameObject.GetComponent<HealthController>();
+               if (_healthController != null)
+               {
+                  _healthController.Damage(damageAmt);
+                  Debug.Log(gameObject.name + " Does " + damageAmt + " To " + index.name);
+               }
+            }
+         }
+         yield return new WaitForSeconds(checkFrequency);
+      }
+
+      private void OnDrawGizmos()
+      {
+         Gizmos.DrawWireSphere(transform.position,checkSphereRadius);
+         
+      }
+   }
 }
