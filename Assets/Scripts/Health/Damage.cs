@@ -14,6 +14,7 @@ namespace Health
 
       [SerializeField] private float checkSphereRadius = 1f;
       [SerializeField] private float checkFrequency = 2f;
+      [SerializeField] private LayerMask CheckLayer;
       private HealthController _healthController;
 
       
@@ -26,7 +27,7 @@ namespace Health
 
       public IEnumerator GiveDamage()
       {
-         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius);
+         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius,CheckLayer);
          foreach (var index in colliders)
          {
             if (index.transform != transform)
