@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Health
@@ -8,19 +9,19 @@ namespace Health
     {
         private Slider _barSlider;
 
-        public HealthController playerHealthController;
+        [FormerlySerializedAs("playerHealthController")] public HealthController healthController;
     
         private void Start()
         {
-            playerHealthController.HealthChange += OnPlayerPlayerHealthControllerChanged;
-            OnPlayerPlayerHealthControllerChanged(playerHealthController.CurrentHealth, playerHealthController.MaxHealth, 0);
+            healthController.HealthChange += OnHealthControllerChanged;
+            OnHealthControllerChanged(healthController.CurrentHealth, healthController.MaxHealth, 0);
 
             _barSlider = GetComponent<Slider>();
-           _barSlider.maxValue = playerHealthController.MaxHealth;
+           _barSlider.maxValue = healthController.MaxHealth;
 
         }
 
-        public void OnPlayerPlayerHealthControllerChanged(int currentHealth, int maxHealth, int healthDelta)
+        public void OnHealthControllerChanged(int currentHealth, int maxHealth, int healthDelta)
         {
             SetFillPercentage(currentHealth);
             
@@ -28,14 +29,14 @@ namespace Health
 
         private void OnDestroy()
         {
-            playerHealthController.HealthChange -= OnPlayerPlayerHealthControllerChanged;
+            healthController.HealthChange -= OnHealthControllerChanged;
         }
 
         public void SetFillPercentage(int value)
         {
             if (_barSlider != null)
             {
-                Debug.Log(value);
+               // Debug.Log(value);
                 _barSlider.value = value;
             }
         }

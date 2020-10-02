@@ -41,6 +41,9 @@
             <e p="CameraController.cs" t="Include" />
             <e p="CameraSettings.cs" t="Include" />
           </e>
+          <e p="Enemy" t="Include">
+            <e p="EnemyMovement.cs" t="Include" />
+          </e>
           <e p="FaceCamera.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="Health" t="Include">
