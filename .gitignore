@@ -22,6 +22,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Idea folder is probably someones editor
+.idea/
+
 # Gradle cache directory
 .gradle/
 
