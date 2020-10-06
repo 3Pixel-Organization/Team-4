@@ -338,6 +338,9 @@ MonoBehaviour:
   damageAmt: 10
   checkSphereRadius: 0
   checkFrequency: 2
+  CheckLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &48991357
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,12 +884,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174231787}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1edaeba1c450dfb40903da47b258c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomRange: 0
+  wanderRadius: 0
+  wanderTimer: 0
+  defaultState: 0
 --- !u!195 &174231789
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1002,6 +1007,9 @@ MonoBehaviour:
   damageAmt: 20
   checkSphereRadius: 1
   checkFrequency: 2
+  CheckLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &174231795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3375,6 +3383,9 @@ MonoBehaviour:
   damageAmt: 10
   checkSphereRadius: 0
   checkFrequency: 2
+  CheckLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1283007597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10439,6 +10450,9 @@ MonoBehaviour:
   damageAmt: 20
   checkSphereRadius: 1
   checkFrequency: 2
+  CheckLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2002405998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10451,7 +10465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edaeba1c450dfb40903da47b258c894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomRange: 5
+  wanderRadius: 0
+  wanderTimer: 0
+  defaultState: 0
 --- !u!195 &2002405999
 NavMeshAgent:
   m_ObjectHideFlags: 0

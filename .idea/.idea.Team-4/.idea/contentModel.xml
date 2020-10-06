@@ -7,6 +7,93 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="BehaviorBricks" t="Include">
+          <e p="Actions" t="Include">
+            <e p="System" t="Include">
+              <e p="Animation" t="Include">
+                <e p="PlayAnimation.cs" t="Include" />
+              </e>
+              <e p="Audio" t="Include">
+                <e p="PlaySound.cs" t="Include" />
+              </e>
+              <e p="Basic" t="Include">
+                <e p="SetBool.cs" t="Include" />
+                <e p="SetFloat.cs" t="Include" />
+                <e p="SetInt.cs" t="Include" />
+                <e p="SetVector3.cs" t="Include" />
+                <e p="toggleBool.cs" t="Include" />
+                <e p="WaitForSeconds.cs" t="Include" />
+              </e>
+              <e p="GameObject" t="Include">
+                <e p="AddComponent.cs" t="Include" />
+                <e p="ClosestGameObjectFromList.cs" t="Include" />
+                <e p="ClosestGameObjectWithTag.cs" t="Include" />
+                <e p="Destroy.cs" t="Include" />
+                <e p="FindGameObjectByName.cs" t="Include" />
+                <e p="FindGameObjectByTag.cs" t="Include" />
+                <e p="GetComponent.cs" t="Include" />
+                <e p="Instantiate.cs" t="Include" />
+                <e p="LookAt.cs" t="Include" />
+                <e p="SendMessage.cs" t="Include" />
+                <e p="SetActive.cs" t="Include" />
+              </e>
+              <e p="Navigation" t="Include">
+                <e p="MoveToGameObject.cs" t="Include" />
+                <e p="MoveToPosition.cs" t="Include" />
+                <e p="MoveToRandomPosition.cs" t="Include" />
+              </e>
+              <e p="Physics" t="Include">
+                <e p="ApplyForce.cs" t="Include" />
+                <e p="FromMouseToWorld.cs" t="Include" />
+                <e p="SetVelocity.cs" t="Include" />
+              </e>
+              <e p="Vector3" t="Include">
+                <e p="GetRandomInArea.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="BehaviorExecutor.cs" t="Include" />
+          <e p="BrickAsset.cs" t="Include" />
+          <e p="Conditions" t="Include">
+            <e p="System" t="Include">
+              <e p="Basic" t="Include">
+                <e p="CheckBool.cs" t="Include" />
+                <e p="CheckButton.cs" t="Include" />
+                <e p="CheckKey.cs" t="Include" />
+                <e p="CheckMouseButton.cs" t="Include" />
+              </e>
+              <e p="Perception" t="Include">
+                <e p="IsTargetClose.cs" t="Include" />
+                <e p="IsTargetCloseAndInSight.cs" t="Include" />
+                <e p="IsTargetInSight.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Editor" t="Include">
+            <e p="BehaviorExecutorEditor.cs" t="Include" />
+          </e>
+          <e p="readme.txt" t="Include" />
+          <e p="Samples" t="Include">
+            <e p="ProgrammersQuickStartGuide" t="Include">
+              <e p="Done" t="Include">
+                <e p="DoneBulletScript.cs" t="Include" />
+                <e p="DoneDayNightCycle.cs" t="Include" />
+                <e p="DoneIsNight.cs" t="Include" />
+                <e p="DoneShoot.cs" t="Include" />
+                <e p="DoneShootOnce.cs" t="Include" />
+                <e p="DoneSleepForever.cs" t="Include" />
+              </e>
+            </e>
+            <e p="QuickStartGuide" t="Include">
+              <e p="Done" t="Include">
+                <e p="Resources" t="Include">
+                  <e p="MassSpawner.cs" t="Include" />
+                  <e p="Spawner.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Joystick Pack" t="Include">
           <e p="Examples" t="Include">
             <e p="JoystickPlayerExample.cs" t="Include" />
@@ -42,7 +129,8 @@
             <e p="CameraSettings.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
-            <e p="EnemyMovement.cs" t="Include" />
+            <e p="EnemyBehaviour.cs" t="Include" />
+            <e p="Enemywander.cs" t="Include" />
           </e>
           <e p="FaceCamera.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />

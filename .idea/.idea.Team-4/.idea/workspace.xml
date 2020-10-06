@@ -27,9 +27,11 @@
     <list default="true" id="d7511705-e60b-410f-a804-9e65afa847b6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Team-4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/EnemyTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/EnemyTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Health/Damage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Health/Damage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Health/HealthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Health/HealthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +42,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy/Enemywander.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -49,6 +52,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Health/Delegates.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Health/HealthController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Health/HealthBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyBehaviour.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemywander.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Health/Damage.cs" />
       </list>
     </option>
@@ -96,6 +102,9 @@
       <workItem from="1601099803575" duration="1329000" />
       <workItem from="1601105473990" duration="10511000" />
       <workItem from="1601309013077" duration="4394000" />
+      <workItem from="1601621811193" duration="59000" />
+      <workItem from="1601622204959" duration="5775000" />
+      <workItem from="1601734172711" duration="32000" />
     </task>
     <servers />
   </component>

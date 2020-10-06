@@ -10,7 +10,7 @@ namespace Health
       /// <summary>
       /// Example implementation of Damage Script 
       /// </summary>
-      [SerializeField] private int damageAmt;
+      [SerializeField] public int damageAmt;
 
       [SerializeField] private float checkSphereRadius = 1f;
       [SerializeField] private float checkFrequency = 2f;
