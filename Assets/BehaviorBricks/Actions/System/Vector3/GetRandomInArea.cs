@@ -43,6 +43,7 @@ namespace BBUnity.Actions
                                              UnityEngine.Random.Range(area.transform.position.z - area.transform.localScale.z * boxCollider.size.z * 0.5f,
                                                                       area.transform.position.z + area.transform.localScale.z * boxCollider.size.z * 0.5f));
             }
+            
             else
             {
                 SphereCollider sphereCollider = area.GetComponent<SphereCollider>();

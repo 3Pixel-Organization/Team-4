@@ -32,12 +32,14 @@ namespace Health
          {
             if (index.transform != transform)
             {
-               _healthController = index.gameObject.GetComponent<HealthController>();
+               _healthController = index.gameObject.GetComponentInParent<HealthController>();
+               
                if (_healthController != null)
                {
                   _healthController.Damage(damageAmt);
                   Debug.Log(gameObject.name + " Does " + damageAmt + " To " + index.name);
                }
+               
             }
          }
          yield return new WaitForSeconds(checkFrequency);

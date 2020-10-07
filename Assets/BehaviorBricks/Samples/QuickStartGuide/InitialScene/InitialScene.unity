@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTasksPerTick: 500
-  behavior: {fileID: 11400000, guid: 85b5d0acef510904d9e14518935824d9, type: 2}
+  behavior: {fileID: 11400000, guid: 94d3c6174bab9ce4597fdc1795b3807b, type: 2}
   paused: 0
   restartWhenFinished: 0
   blackboard:
@@ -407,8 +407,10 @@ MonoBehaviour:
     boolParams: 
     boolParamsNames: []
     boolParamsLostDefaultValue: 
-    floatParams: []
-    floatParamsNames: []
+    floatParams:
+    - 15
+    floatParamsNames:
+    - closeDistance
     floatParamsLostDefaultValue: 
     stringParams: []
     stringParamsNames: []
@@ -417,9 +419,9 @@ MonoBehaviour:
     colorParamsNames: []
     colorParamsLostDefaultValue: 
     objectParams:
-    - {fileID: 2016349709}
+    - {fileID: 99947096}
     objectParamsNames:
-    - WanderArea
+    - target
     objectParamsLostDefaultValue: 
     layerMaskParams: []
     layerMaskParamsNames: []
