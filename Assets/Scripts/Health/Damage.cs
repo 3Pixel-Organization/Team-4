@@ -10,10 +10,11 @@ namespace Health
       /// <summary>
       /// Example implementation of Damage Script 
       /// </summary>
-      [SerializeField] private int damageAmt;
+      [SerializeField] public int damageAmt;
 
       [SerializeField] private float checkSphereRadius = 1f;
       [SerializeField] private float checkFrequency = 2f;
+      [SerializeField] private LayerMask CheckLayer;
       private HealthController _healthController;
 
       
@@ -26,17 +27,19 @@ namespace Health
 
       public IEnumerator GiveDamage()
       {
-         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius);
+         Collider[] colliders = Physics.OverlapSphere(transform.position, checkSphereRadius,CheckLayer);
          foreach (var index in colliders)
          {
             if (index.transform != transform)
             {
-               _healthController = index.gameObject.GetComponent<HealthController>();
+               _healthController = index.gameObject.GetComponentInParent<HealthController>();
+               
                if (_healthController != null)
                {
                   _healthController.Damage(damageAmt);
                   Debug.Log(gameObject.name + " Does " + damageAmt + " To " + index.name);
                }
+               
             }
          }
          yield return new WaitForSeconds(checkFrequency);
