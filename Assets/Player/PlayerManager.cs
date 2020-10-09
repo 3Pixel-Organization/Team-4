@@ -8,23 +8,45 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private WeaponHandler weaponHandler;
 	[SerializeField] private Animator animator;
 
+	private float sliceTimer;
+
 	// Start is called before the first frame update
 	void Start()
 	{
+		currentWeapon = ItemManager.CreateWeapon("Killer bill", 15, 100, ItemRarity.Rare, "Katana", 100, new Enchantment(EnchantmentType.Fire));
 		weaponHandler.SetupWeapon(currentWeapon);
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			SliceAttack();
+		}
+
+		if(sliceTimer <= 0)
+		{
+			animator.SetBool("Sliceing", false);
+			weaponHandler.EndAttack();
+		}
+		sliceTimer -= Time.deltaTime;
 	}
 
 	public void SliceAttack()
 	{
-		Debug.Log("Slice");
-		animator.SetTrigger("Slice");
-		
+		weaponHandler.StartAttack();
+		animator.SetBool("Sliceing", true);
+		if(sliceTimer <= 0)
+		{
+			animator.SetTrigger("Slice");
+		}
+		sliceTimer = 0.3f;
+	}
+
+	void Slice()
+	{
+
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -32,9 +54,10 @@ public class PlayerManager : MonoBehaviour
 		if (other.CompareTag("Loot"))
 		{
 			LootDrop lootDrop = other.GetComponent<LootDrop>();
+			Debug.Log(lootDrop.item.name);
 			Inventory.AddItemToInventory(lootDrop.item);
+			other.gameObject.SetActive(false);
 			Destroy(other.gameObject, 0.01f);
-			Debug.Log(Inventory.items[0].name);
 		}
 	}
 }
