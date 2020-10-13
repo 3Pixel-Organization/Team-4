@@ -50,7 +50,7 @@ MonoBehaviour:
   checkFrequency: 2
   CheckLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
 --- !u!1 &7320313835042679471
 GameObject:
   m_ObjectHideFlags: 0

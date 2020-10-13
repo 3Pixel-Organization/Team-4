@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 91715068917512952}
   - component: {fileID: 91715068917512954}
   - component: {fileID: 91715068917512955}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 91715068939206213}
   - component: {fileID: 91715068939206210}
   - component: {fileID: 91715068939206211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 91715069199615518}
   - component: {fileID: 91715069199615519}
   - component: {fileID: -6971149247016106419}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ MonoBehaviour:
   checkFrequency: 2
   CheckLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
 --- !u!114 &-6971149247016106419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 91715069776793485}
   - component: {fileID: 91715069776793487}
   - component: {fileID: 91715069776793484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 5376228754860232804}
   - component: {fileID: 2473843302709228259}
   - component: {fileID: 6655694866756370600}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

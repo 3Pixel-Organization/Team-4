@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Katana
   m_EditorClassIdentifier: 
   model: {fileID: 2301206525044130844, guid: 1c89273275484c54c91c04a8af5ed0b2, type: 3}
-  sprite: {fileID: 21300000, guid: 737a1abd627faeb498806ae18363f9f6, type: 3}
+  sprite: {fileID: 21300000, guid: 9645463450837ca41af46ea6fc695873, type: 3}
   isDualWelded: 0
   weaponType: 1

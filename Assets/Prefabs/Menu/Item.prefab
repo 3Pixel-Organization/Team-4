@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 4040619584207663538}
   itemText: {fileID: 2789244382295671590}
+  button: {fileID: 0}
 --- !u!114 &8556390876125492907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.34117648, g: 0.34509805, b: 0.73333335, a: 1}
+  m_Color: {r: 0, g: 0.38431376, b: 0.40000004, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
