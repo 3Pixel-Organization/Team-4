@@ -18,6 +18,7 @@ public class LootDrop : MonoBehaviour
 		itemText.color = ItemManager.GetRarityColor(item.rarity);
 		GameObject box = Instantiate(item.model, itemSpawnPos);
 		Damage dmgBox = box.GetComponentInChildren<Damage>();
+		Instantiate(ItemManager.GetRarityBox(item.rarity), transform);
 		if(dmgBox != null)
 		{
 			dmgBox.enabled = false;

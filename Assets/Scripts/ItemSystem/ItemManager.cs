@@ -14,6 +14,7 @@ public class ItemManager
 			value = value,
 			rarity = rarity,
 			model = itemPrefab.model,
+			sprite = itemPrefab.sprite,
 			itemPrefabName = itemPrefabName,
 		};
 		return item;
@@ -30,6 +31,7 @@ public class ItemManager
 			rarity = rarity,
 			itemPrefabName = itemPrefabName,
 			model = weaponPrefab.model,
+			sprite = weaponPrefab.sprite,
 			damage = damage,
 			enchantment = enchantment,
 			type = weaponPrefab.weaponType,
@@ -48,6 +50,7 @@ public class ItemManager
 			value = value,
 			rarity = rarity,
 			itemPrefabName = itemPrefabName,
+			sprite = armorPrefab.sprite,
 			model = armorPrefab.model,
 			defence = defence,
 			enchantment = enchantment,
@@ -55,7 +58,7 @@ public class ItemManager
 		};
 		return armor;
 	}
-
+	
 	public static Color GetRarityColor(ItemRarity itemRarity)
 	{
 		switch (itemRarity)
@@ -74,6 +77,26 @@ public class ItemManager
 				return Color.cyan;
 			default:
 				return Color.red;
+		}
+	}
+	public static GameObject GetRarityBox(ItemRarity itemRarity)
+	{
+		switch (itemRarity)
+		{
+			case ItemRarity.Trash:
+				return Resources.Load<GameObject>("LootBoxes/Trash Box");
+			case ItemRarity.Normal:
+				return Resources.Load<GameObject>("LootBoxes/Common Box");
+			case ItemRarity.Rare:
+				return Resources.Load<GameObject>("LootBoxes/Rare Box");
+			case ItemRarity.Epic:
+				return Resources.Load<GameObject>("LootBoxes/Epic Box");
+			case ItemRarity.Legendary:
+				return Resources.Load<GameObject>("LootBoxes/Legendary Box");
+			case ItemRarity.Dev:
+				return Resources.Load<GameObject>("LootBoxes/Legendary Box");
+			default:
+				return Resources.Load<GameObject>("LootBoxes/Trash Box");
 		}
 	}
 }

@@ -7,6 +7,7 @@ public class MenuItemHandler : MonoBehaviour
 {
 	[SerializeField] private Image itemImage;
 	[SerializeField] private TMPro.TextMeshProUGUI itemText;
+	[SerializeField] private Button button;
 
 
 	public void SetupItem(Item item)

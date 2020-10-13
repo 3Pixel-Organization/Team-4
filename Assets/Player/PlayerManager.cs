@@ -55,7 +55,7 @@ public class PlayerManager : MonoBehaviour
 		{
 			LootDrop lootDrop = other.GetComponent<LootDrop>();
 			Debug.Log(lootDrop.item.name);
-			Inventory.AddItemToInventory(lootDrop.item);
+			GameManager.current.PickupItem(lootDrop.item);
 			other.gameObject.SetActive(false);
 			Destroy(other.gameObject, 0.01f);
 		}
