@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
 		dashEndPos = transform.position + (new Vector3(playerDirection.x, 0, playerDirection.y) * dashSettings.distance);
 		dashTimer = 0;
 		dashParticles.Play();
+		animator.SetTrigger("Dash");
 	}
 
 	void DashUpdate()
