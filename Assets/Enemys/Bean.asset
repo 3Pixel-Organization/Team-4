@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 91715069199615516, guid: ac32a4e79cc794944ace000a72bf1809, type: 3}
   reletiveLevel: 1
+  enemyTier: 0

@@ -19,4 +19,13 @@ public class GameEvents : MonoBehaviour
 			onEnemySpawnTriggerEnter(id);
 		}
 	}
+
+	public event Action OnPlayerLevelUp;
+	public void PlayerLevelUp()
+	{
+		if (OnPlayerLevelUp != null)
+		{
+			OnPlayerLevelUp();
+		}
+	}
 }

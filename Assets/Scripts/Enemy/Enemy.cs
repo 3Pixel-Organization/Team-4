@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
 	public int level;
 	public TMPro.TextMeshProUGUI levelText;
+	public EnemyPrefab enemyPrefab;
 
 	private HealthController healthController;
 	// Start is called before the first frame update
@@ -24,10 +25,7 @@ public class Enemy : MonoBehaviour
 
 	void Death()
 	{
-		if (Random.Range(0, 1) <= 1)
-		{
-			GameManager.current.SpawnLoot(transform.position, ItemManager.CreateArmor("iron Dev", 20, 1000, ItemRarity.Epic, "IronHelmet", 10, new Enchantment(EnchantmentType.None)));
-		}
+		GameManager.current.SpawnLoot(transform.position, this);
 		Destroy(this.gameObject);
 	}
 }

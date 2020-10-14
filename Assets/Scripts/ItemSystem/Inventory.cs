@@ -32,15 +32,6 @@ public class Inventory
 	public static void Load()
 	{
 		SaveData.Current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/data.savedata");
-		
-		if(SaveData.Current.player != null)
-		{
-			if (SaveData.Current.player.currentWeapon != null)
-			{
-				equippedWeapon = new Weapon(SaveData.Current.player.currentWeapon);
-			}
-		}
-		
 
 		items.Clear();
 		foreach (ItemData item in SaveData.Current.items)
@@ -65,14 +56,6 @@ public class Inventory
 	public static void Save()
 	{
 		SaveData.Current.items.Clear();
-		if (equippedWeapon != null)
-		{
-			if(SaveData.Current.player == null)
-			{
-				SaveData.Current.player = new PlayerData();
-			}
-			SaveData.Current.player.currentWeapon = new WeaponData(equippedWeapon);
-		}
 		
 		foreach (Item item in items)
 		{

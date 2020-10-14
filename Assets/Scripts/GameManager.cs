@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
 	private void Awake()
 	{
 		current = this;
+		Inventory.Load();
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		Inventory.Load();
 		List<Item> itemsToSpawn = new List<Item>
 		{
 			ItemManager.CreateWeapon("Killer bill", 15, 100, ItemRarity.Legendary, "Katana", 100, new Enchantment(EnchantmentType.Fire)),
@@ -67,6 +67,16 @@ public class GameManager : MonoBehaviour
 	void UnPauseGame()
 	{
 		Time.timeScale = 1;
+	}
+
+	public void SpawnLoot(Vector3 position, Enemy enemy)
+	{
+		List<LootPrefab> prefabLoot = levelData.levelLootTable.GetLoot(enemy.enemyPrefab.enemyTier);
+		foreach (LootPrefab item in prefabLoot)
+		{
+			GameObject gameLoot = Instantiate(LootPrefab, position, Quaternion.identity);
+			gameLoot.GetComponent<LootDrop>().SetupLoot(item.CreateItem(levelData.difficultyLevel));
+		}
 	}
 
 	public void SpawnLoot(Vector3 position, Item item)

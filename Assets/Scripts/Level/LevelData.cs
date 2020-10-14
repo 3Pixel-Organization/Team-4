@@ -8,4 +8,5 @@ public class LevelData : ScriptableObject
 	public string name;
 	public int sceneNumb;
 	public int difficultyLevel;
+	public LootTable levelLootTable;
 }

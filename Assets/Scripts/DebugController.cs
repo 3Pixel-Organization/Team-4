@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class DebugController : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class DebugController : MonoBehaviour
 	public static DebugCommand INV_LOAD;
 	public static DebugCommand CONSOLE_TEST;
 	public static DebugCommand HELP;
+	public static DebugCommand PLAYER_SAVE;
+	public static DebugCommand PLAYER_LOAD;
+	public static DebugCommand<int> PLAYER_SET_LVL;
+	public static DebugCommand<int> PLAYER_SET_EXP;
+	public static DebugCommand<int> PLAYER_ADD_EXP;
 
 	public List<object> commandList;
 
@@ -44,6 +50,30 @@ public class DebugController : MonoBehaviour
 			showHelp = true;
 		});
 
+		PLAYER_LOAD = new DebugCommand("player_load", "Loads player data", "player_load", () =>
+		{
+			Player.Load();
+		});
+
+		PLAYER_SAVE = new DebugCommand("player_save", "Saves player data", "player_save", () =>
+		{
+			Player.Save();
+		});
+
+		PLAYER_SET_LVL = new DebugCommand<int>("player_set_lvl", "Sets the playerdata level", "player_set_lvl <level>", (lvl) =>
+		{
+			Player.level = lvl;
+		});
+
+		PLAYER_SET_EXP = new DebugCommand<int>("player_set_exp", "Sets the playerdata expPoints", "player_set_exp <expPoints>", (expPoints) =>
+		{
+			Player.expPoints = expPoints;
+		});
+
+		PLAYER_ADD_EXP = new DebugCommand<int>("player_add_exp", "Adds to the playerdata expPoints", "player_add_exp <expPoints>", (expPoints) =>
+		{
+			Player.expPoints += expPoints;
+		});
 
 		commandList = new List<object>
 		{
@@ -51,6 +81,11 @@ public class DebugController : MonoBehaviour
 			INV_SAVE,
 			INV_LOAD,
 			CONSOLE_TEST,
+			PLAYER_LOAD,
+			PLAYER_SAVE,
+			PLAYER_SET_LVL,
+			PLAYER_SET_EXP,
+			PLAYER_ADD_EXP,
 			HELP
 		};
 
@@ -60,6 +95,22 @@ public class DebugController : MonoBehaviour
 	{
 		
 	}
+
+	public void ToggleConsole()
+	{
+		OnToggleDebug(new InputValue());
+	}
+
+	public void EnterPress()
+	{
+		OnReturn(new InputValue());
+	}
+
+	public void SaveInv()
+	{
+		GameManager.current.Victory();
+	}
+
 	public void OnToggleDebug(InputValue value)
 	{
 		showConsole = !showConsole;
@@ -91,7 +142,7 @@ public class DebugController : MonoBehaviour
 
 			for (int i = 0; i < commandList.Count; i++)
 			{
-				DebugCommandBase command = commandList[i] as DebugCommand;
+				DebugCommandBase command = commandList[i] as DebugCommandBase;
 
 				string label = $"{command.CommandFormat} - {command.CommandDescription}";
 
@@ -109,6 +160,7 @@ public class DebugController : MonoBehaviour
 
 	private void HandleInput()
 	{
+		string[] properties = input.Split(' ');
 		for (int i = 0; i < commandList.Count; i++)
 		{
 			DebugCommandBase commandBase = commandList[i] as DebugCommandBase;
@@ -118,6 +170,10 @@ public class DebugController : MonoBehaviour
 				if (commandList[i] as DebugCommand != null)
 				{
 					(commandList[i] as DebugCommand).Invoke();
+				}
+				else if(commandList[i] as DebugCommand<int> != null)
+				{
+					(commandList[i] as DebugCommand<int>).Invoke(int.Parse(properties[1]));
 				}
 			}
 		}

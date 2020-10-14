@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Health;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -22,6 +23,10 @@ public class EnemySpawner : MonoBehaviour
 			Enemy enemyScript = enemyObj.GetComponent<Enemy>();
 			enemyScript.level = finalLevel;
 			enemyScript.levelText.SetText("lvl - " + finalLevel);
+			enemyScript.enemyPrefab = enemyPrefab;
+			HealthController healthController = enemyObj.GetComponent<HealthController>();
+			healthController.MaxHealth = Mathf.RoundToInt(enemyPrefab.healthMultiplier * (enemyPrefab.reletiveLevel + GameManager.current.levelData.difficultyLevel));
+			healthController.GiveHealth(10000);
 		}
 	}
 

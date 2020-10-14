@@ -2,11 +2,8 @@
 using System.Collections;
 using UnityEngine.AI;
  
-public class Enemywander :EnemyBehaviour {
- 
-    public float wanderRadius;
-    public float wanderTimer;
- 
+public class Enemywander : EnemyBehaviour 
+{
     private Transform target;
     private NavMeshAgent agent;
     private float timer = 0f;
