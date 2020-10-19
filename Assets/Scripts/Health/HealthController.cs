@@ -8,7 +8,7 @@ namespace Health
     
     public class HealthController : MonoBehaviour
     {
-        private int _currentHealth = 100;
+        [SerializeField] private int _currentHealth = 100;
         private float _currentDamageCooldown = 0;
 
         [Tooltip("Max health this character can have.")]

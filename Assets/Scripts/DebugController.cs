@@ -72,7 +72,7 @@ public class DebugController : MonoBehaviour
 
 		PLAYER_ADD_EXP = new DebugCommand<int>("player_add_exp", "Adds to the playerdata expPoints", "player_add_exp <expPoints>", (expPoints) =>
 		{
-			Player.expPoints += expPoints;
+			Player.levelSystem.GiveExp(expPoints);
 		});
 
 		commandList = new List<object>
@@ -91,24 +91,24 @@ public class DebugController : MonoBehaviour
 
 	}
 
+	Vector3 oldPos;
+	float currentMoveSpeed;
+	bool isMoving;
+
 	private void Update()
 	{
-		
-	}
-
-	public void ToggleConsole()
-	{
-		OnToggleDebug(new InputValue());
-	}
-
-	public void EnterPress()
-	{
-		OnReturn(new InputValue());
-	}
-
-	public void SaveInv()
-	{
-		GameManager.current.Victory();
+		isMoving = false;
+		Vector3 currentPos = new Vector3(transform.position.x, 0, transform.position.z);
+		if (oldPos == null)
+		{
+			oldPos = currentPos;
+		}
+		Vector3 posDelta = currentPos - oldPos;
+		if(posDelta.magnitude > 0)
+		{
+			currentMoveSpeed = posDelta.magnitude * Time.deltaTime;
+			isMoving = true;
+		}
 	}
 
 	public void OnToggleDebug(InputValue value)

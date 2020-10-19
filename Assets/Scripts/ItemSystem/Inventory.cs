@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Inventory
 {
 	public static List<Item> items = new List<Item>();
-	public static Weapon equippedWeapon;
 
 	public static bool AddItemToInventory(Item item)
 	{

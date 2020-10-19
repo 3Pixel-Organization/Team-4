@@ -8,6 +8,7 @@ public class EnemyPrefab : ScriptableObject
 	public GameObject prefab;
 	public int reletiveLevel;
 	public float healthMultiplier;
+	public float expMultiplier;
 	public EnemyTier enemyTier;
 }
 

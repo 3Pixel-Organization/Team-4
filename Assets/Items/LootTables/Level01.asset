@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc77dd9ef3a32354fa198f95118aeb7b, type: 3}
+  m_Name: Level01
+  m_EditorClassIdentifier: 
+  lootTierEasy:
+  - {fileID: 11400000, guid: 60527d0203ea019439bd3237ce5374a4, type: 2}
+  lootTierNormal: []
+  lootTierHard: []
+  lootTierHarder:
+  - {fileID: 11400000, guid: a4061b380cf4b45408fa095fc5561fc0, type: 2}
+  lootTierBoss:
+  - {fileID: 11400000, guid: 9785c1be5011a434abfe56a4c589d7ad, type: 2}

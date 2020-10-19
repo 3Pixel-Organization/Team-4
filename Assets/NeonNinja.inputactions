@@ -291,17 +291,6 @@
                 },
                 {
                     "name": "",
-                    "id": "31d46bac-7b80-40d0-a751-36ae13807e12",
-                    "path": "<Touchscreen>/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ToggleDebug",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c8da91e5-16a5-405f-95b4-f8e69f818773",
                     "path": "<Keyboard>/enter",
                     "interactions": "",

@@ -19,7 +19,8 @@ public class EnemySpawner : MonoBehaviour
 		if(this.areaID == areaID)
 		{
 			int finalLevel = GameManager.current.levelData.difficultyLevel + enemyPrefab.reletiveLevel;
-			GameObject enemyObj = Instantiate(enemyPrefab.prefab, transform);
+			GameObject enemyObj = Instantiate(enemyPrefab.prefab);
+			enemyObj.GetComponent<Transform>().position = transform.position;
 			Enemy enemyScript = enemyObj.GetComponent<Enemy>();
 			enemyScript.level = finalLevel;
 			enemyScript.levelText.SetText("lvl - " + finalLevel);
