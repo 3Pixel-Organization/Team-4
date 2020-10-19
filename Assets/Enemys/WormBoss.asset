@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4898007528b124d4a9790d90809c92e0, type: 3}
   m_Name: WormBoss
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4951108370238162580, guid: de9cef49caeda4b4280e98ab4856ab5b, type: 3}
   reletiveLevel: 10
+  healthMultiplier: 10
+  expMultiplier: 5
   enemyTier: 4

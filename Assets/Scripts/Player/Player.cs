@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Levels;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ public class Player
 	public static float expPoints;
 	public static Weapon equippedWeapon;
 	public static List<Armor> equippedArmor;
+	public static LevelSystem levelSystem;
 
 	public static void Save()
 	{
@@ -44,6 +47,7 @@ public class Player
 		{
 			level = SaveData.Current.player.level;
 			expPoints = SaveData.Current.player.expPoints;
+			levelSystem = new LevelSystem();
 			if (SaveData.Current.player.currentWeapon != null)
 			{
 				equippedWeapon = new Weapon(SaveData.Current.player.currentWeapon);
@@ -66,6 +70,7 @@ public class Player
 			};
 			level = 0;
 			expPoints = 0;
+			levelSystem = new LevelSystem();
 		}
 	}
 }

@@ -11,10 +11,9 @@ public class PlayerManager : MonoBehaviour
 
 	private float sliceTimer;
 
-	float expForNextLvl;
 	private void Awake()
 	{
-		Player.Load();
+
 	}
 
 	// Start is called before the first frame update
@@ -22,7 +21,6 @@ public class PlayerManager : MonoBehaviour
 	{
 		currentWeapon = ItemManager.CreateWeapon("Killer bill", 15, 100, ItemRarity.Rare, "Katana", 100, new Enchantment(EnchantmentType.Fire));
 		weaponHandler.SetupWeapon(currentWeapon);
-		expForNextLvl = GetExpForLevel(Player.level + 1);
 	}
 
 	// Update is called once per frame
@@ -39,17 +37,6 @@ public class PlayerManager : MonoBehaviour
 			weaponHandler.EndAttack();
 		}
 		sliceTimer -= Time.deltaTime;
-		if(Player.expPoints >= expForNextLvl)
-		{
-			PlayerLevelUp();
-		}
-	}
-
-	public void PlayerLevelUp()
-	{
-		Player.level++;
-		GameEvents.current.PlayerLevelUp();
-		expForNextLvl = GetExpForLevel(Player.level + 1);
 	}
 
 	public static float GetExpForLevel(int level)

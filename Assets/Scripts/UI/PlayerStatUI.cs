@@ -14,7 +14,8 @@ public class PlayerStatUI : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		GameEvents.current.OnPlayerLevelUp += OnPlayerLevelUp;
+		Player.levelSystem.OnLevelChange += OnPlayerLevelUp;
+		Player.levelSystem.OnExpChange += OnPlayerExpChange;
 		if(expBar != null)
 		{
 			SetupExpBar();
@@ -28,10 +29,7 @@ public class PlayerStatUI : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(expBar != null)
-		{
-			expBar.current = Mathf.RoundToInt(Player.expPoints);
-		}
+		
 	}
 
 	private void SetupExpBar()
@@ -39,7 +37,8 @@ public class PlayerStatUI : MonoBehaviour
 		expForNextLvl = GetExpForLevel(Player.level + 1);
 		expBar.maximum = Mathf.RoundToInt(expForNextLvl);
 		expBar.current = Mathf.RoundToInt(Player.expPoints);
-		expBar.minimum = Mathf.RoundToInt(GetExpForLevel(Player.level));
+		expBar.minimum = 0;//Mathf.RoundToInt(GetExpForLevel(Player.level));
+		expBar.ValueChange();
 
 	}
 
@@ -60,9 +59,24 @@ public class PlayerStatUI : MonoBehaviour
 		}
 	}
 
+	private void OnPlayerExpChange()
+	{
+		if (expBar != null)
+		{
+			expBar.current = Mathf.RoundToInt(Player.expPoints);
+			expBar.ValueChange();
+		}
+	}
+
 	public static float GetExpForLevel(int level)
 	{
 		float returnValue = (float)level * 1.2f * 100f;
 		return returnValue;
+	}
+
+	private void OnDestroy()
+	{
+		Player.levelSystem.OnLevelChange -= OnPlayerLevelUp;
+		Player.levelSystem.OnExpChange -= OnPlayerExpChange;
 	}
 }

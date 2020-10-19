@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Player settings")]
+[CreateAssetMenu(menuName = "Settings/Player settings")]
 public class PlayerSettings : ScriptableObject
 {
 	public float movementSpeed;

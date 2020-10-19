@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a9f5e343e06f484aa5bca986933e28d, type: 3}
-  m_Name: Cap Katana
+  m_Script: {fileID: 11500000, guid: 7266c1304c290754a91b53f51963c61e, type: 3}
+  m_Name: Dev_test
   m_EditorClassIdentifier: 
-  itemName: Capsule blade
-  dropChance: 6.7
-  dropAmount: 1
-  levelBoost: 0
-  valueMultiplier: 1
-  itemPrefab: {fileID: 11400000, guid: c46b40086bde8b944a27f3df266ffc99, type: 2}
-  itemRarity: 0
+  name: Dev test scene
+  sceneNumb: 0
+  difficultyLevel: 10
+  levelLootTable: {fileID: 11400000, guid: d20428f5e57fb4749a7b8c3bf203eea6, type: 2}

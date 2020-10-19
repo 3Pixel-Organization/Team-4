@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Level")]
-public class LevelData : ScriptableObject
+[CreateAssetMenu(menuName = "SceneData")]
+public class SceneData : ScriptableObject
 {
 	public string name;
 	public int sceneNumb;

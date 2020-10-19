@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour
 	void Death()
 	{
 		GameManager.current.SpawnLoot(transform.position, this);
+		Player.levelSystem.GiveExp((GameManager.current.levelData.difficultyLevel + enemyPrefab.reletiveLevel) * enemyPrefab.expMultiplier * 10);
+		if(enemyPrefab.enemyTier == EnemyTier.Boss)
+		{
+			GameManager.current.Victory();
+		}
 		Destroy(this.gameObject);
 	}
 }

@@ -7,16 +7,15 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager current;
 	[SerializeField] private GameObject LootPrefab;
-	[SerializeField] private GameObject inventoryCanvas;
-	[SerializeField] private GameObject gameplayCanvas;
 
 	public List<Item> currentRunItems = new List<Item>();
-	public LevelData levelData;
+	public SceneData levelData;
 
 	private void Awake()
 	{
 		current = this;
 		Inventory.Load();
+		Player.Load();
 	}
 
 	// Start is called before the first frame update
@@ -52,6 +51,7 @@ public class GameManager : MonoBehaviour
 		}
 		currentRunItems.Clear();
 		Inventory.Save();
+		Player.Save();
 	}
 
 	public void Loose()
@@ -59,12 +59,12 @@ public class GameManager : MonoBehaviour
 
 	}
 
-	void PauseGame()
+	public void PauseGame()
 	{
 		Time.timeScale = 0;
 	}
 
-	void UnPauseGame()
+	public void UnPauseGame()
 	{
 		Time.timeScale = 1;
 	}
@@ -88,30 +88,6 @@ public class GameManager : MonoBehaviour
 	public void PickupItem(Item item)
 	{
 		currentRunItems.Add(item);
-	}
-
-	public void OpenInventory()
-	{
-		PauseGame();
-		inventoryCanvas.SetActive(true);
-		gameplayCanvas.SetActive(false);
-	}
-
-	public void CloseInventory()
-	{
-		UnPauseGame();
-		inventoryCanvas.SetActive(false);
-		gameplayCanvas.SetActive(true);
-	}
-
-	public void Load()
-	{
-		Inventory.Load();
-	}
-
-	public void Save()
-	{
-		Inventory.Save();
 	}
 
 	public void PrintInventory()
