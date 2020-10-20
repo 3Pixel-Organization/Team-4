@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Levels;
 
 public class PlayerStatUI : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class PlayerStatUI : MonoBehaviour
 
 	private void SetupExpBar()
 	{
-		expForNextLvl = GetExpForLevel(Player.level + 1);
+		expForNextLvl = Exp.ExpForLvl(Player.level);
 		expBar.maximum = Mathf.RoundToInt(expForNextLvl);
 		expBar.current = Mathf.RoundToInt(Player.expPoints);
 		expBar.minimum = 0;//Mathf.RoundToInt(GetExpForLevel(Player.level));
@@ -66,12 +67,6 @@ public class PlayerStatUI : MonoBehaviour
 			expBar.current = Mathf.RoundToInt(Player.expPoints);
 			expBar.ValueChange();
 		}
-	}
-
-	public static float GetExpForLevel(int level)
-	{
-		float returnValue = (float)level * 1.2f * 100f;
-		return returnValue;
 	}
 
 	private void OnDestroy()

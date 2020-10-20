@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Victory");
 		foreach (Item item in currentRunItems)
 		{
-			Inventory.AddItemToInventory(item);
+			Inventory.AddItem(item);
 		}
 		currentRunItems.Clear();
 		Inventory.Save();
@@ -67,6 +67,16 @@ public class GameManager : MonoBehaviour
 	public void UnPauseGame()
 	{
 		Time.timeScale = 1;
+	}
+
+	public void EnemyDeath(Transform transform, Enemy enemy)
+	{
+		List<LootPrefab> prefabLoot = levelData.levelLootTable.GetLoot(enemy.enemyPrefab.enemyTier);
+		foreach (LootPrefab item in prefabLoot)
+		{
+			GameObject gameLoot = Instantiate(LootPrefab, transform.position, Quaternion.identity);
+			gameLoot.GetComponent<LootDrop>().SetupLoot(item.CreateItem(levelData.difficultyLevel));
+		}
 	}
 
 	public void SpawnLoot(Vector3 position, Enemy enemy)

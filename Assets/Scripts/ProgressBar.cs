@@ -25,6 +25,7 @@ public class ProgressBar : MonoBehaviour
 	[SerializeField] private Color color;
 	[Range(1.0f, 0.0f)]
 	[SerializeField] private float barBias = 0.3f;
+	[SerializeField] private bool autoUpdate = false;
 
 	private float targetFill;
 	// Start is called before the first frame update
@@ -41,7 +42,10 @@ public class ProgressBar : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if (autoUpdate)
+		{
+			ValueChange();
+		}
 	}
 
 	private void FixedUpdate()
