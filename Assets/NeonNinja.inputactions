@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AutoComplete",
+                    "type": "Button",
+                    "id": "cccb5ce6-0e78-4654-ab34-83b4bbf3801e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -297,6 +305,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0aaa6a34-b0eb-4d02-abc4-f47974d1c801",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AutoComplete",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

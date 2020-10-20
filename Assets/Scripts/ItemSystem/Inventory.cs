@@ -7,27 +7,47 @@ public class Inventory
 {
 	public static List<Item> items = new List<Item>();
 
-	public static bool AddItemToInventory(Item item)
+	/// <summary>
+	/// Adds an item to the inventory
+	/// </summary>
+	/// <param name="item">item to be added</param>
+	/// <returns>success or fail</returns>
+	public static bool AddItem(Item item)
 	{
-		items.Add(item);
-		/*
-		if(item is Weapon)
+		if (!items.Contains(item))
 		{
-			Weapon weapon = item as Weapon;
-			SaveData.Current.items.Add(new WeaponData(weapon));
-		}
-		else if(item is Armor)
-		{
-			Armor armor = item as Armor;
-			SaveData.Current.items.Add(new ArmorData(armor));
+			items.Add(item);
+			return true;
 		}
 		else
 		{
-			SaveData.Current.items.Add(new ItemData(item));
-		}*/
-		return true;
+			return false;
+		}
 	}
 
+	/// <summary>
+	/// Checks if the item is in the inventory
+	/// </summary>
+	/// <param name="item">item to check for</param>
+	/// <returns>if the item is in the inventory</returns>
+	public static bool CheckForItem(Item item)
+	{
+		return items.Contains(item);
+	}
+
+	/// <summary>
+	/// Removes an item from the inventory
+	/// </summary>
+	/// <param name="item">item to be removed</param>
+	/// <returns>success or fail</returns>
+	public static bool RemoveItem(Item item)
+	{
+		return items.Remove(item);
+	}
+
+	/// <summary>
+	/// Loads the inventory from a file
+	/// </summary>
 	public static void Load()
 	{
 		SaveData.Current = (SaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/data.savedata");
@@ -52,6 +72,9 @@ public class Inventory
 		}
 	}
 
+	/// <summary>
+	/// Saves the current inventory to a file
+	/// </summary>
 	public static void Save()
 	{
 		SaveData.Current.items.Clear();

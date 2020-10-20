@@ -77,12 +77,30 @@ namespace Levels
 
 		void UpdateExpToNextLevel()
 		{
-			expToNextLvl = _currentLvl * 1.2f * 100f;
+			expToNextLvl = Exp.ExpForLvl(_currentLvl);
 		}
 
 		public void GiveExp(float amount)
 		{
 			currentExp += amount;
+		}
+
+		/// <summary>
+		/// Do not use this is only ment to be used by the debug console
+		/// </summary>
+		/// <param name="amount">the xp amount</param>
+		public void SetExp(float amount)
+		{
+
+		}
+
+		/// <summary>
+		/// Do not use this is only ment to be used by the debug console
+		/// </summary>
+		/// <param name="level">the level</param>
+		public void SetLvl(int level)
+		{
+
 		}
 	}
 }

@@ -62,12 +62,12 @@ public class DebugController : MonoBehaviour
 
 		PLAYER_SET_LVL = new DebugCommand<int>("player_set_lvl", "Sets the playerdata level", "player_set_lvl <level>", (lvl) =>
 		{
-			Player.level = lvl;
+			Player.levelSystem.SetLvl(lvl);
 		});
 
 		PLAYER_SET_EXP = new DebugCommand<int>("player_set_exp", "Sets the playerdata expPoints", "player_set_exp <expPoints>", (expPoints) =>
 		{
-			Player.expPoints = expPoints;
+			Player.levelSystem.SetExp(expPoints);
 		});
 
 		PLAYER_ADD_EXP = new DebugCommand<int>("player_add_exp", "Adds to the playerdata expPoints", "player_add_exp <expPoints>", (expPoints) =>
@@ -122,6 +122,10 @@ public class DebugController : MonoBehaviour
 			HandleInput();
 			input = "";
 		}
+	}
+	public void OnAutoComplete(InputValue value)
+	{
+
 	}
 
 	Vector2 scroll;
