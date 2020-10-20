@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
 		{
 			PlayerMovment();
 		}
+		else
+		{
+			rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.2f);
+		}
 
 		if (Input.GetKeyDown(KeyCode.LeftControl) && !isDashing)
 		{
@@ -126,5 +130,15 @@ public class PlayerController : MonoBehaviour
 	{
 		movmentIsActive = true;
 		isDashing = false;
+	}
+
+	public void ActivateMovment()
+	{
+		movmentIsActive = true;
+	}
+
+	public void DeactivateMovment()
+	{
+		movmentIsActive = false;
 	}
 }

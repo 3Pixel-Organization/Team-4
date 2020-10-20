@@ -13,6 +13,7 @@ public class MenuItemHandler : MonoBehaviour
 	public void SetupItem(Item item)
 	{
 		itemText.SetText(item.name);
+		itemText.color = ItemManager.GetRarityColor(item.rarity);
 		itemImage.sprite = item.sprite;
 	}
 
