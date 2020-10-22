@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Media;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private Weapon currentWeapon;
 	[SerializeField] private WeaponHandler weaponHandler;
 	[SerializeField] private Animator animator;
+	[SerializeField] private AudioSource slashSound;
 
 	private float sliceTimer;
 
@@ -47,6 +49,7 @@ public class PlayerManager : MonoBehaviour
 
 	public void SliceAttack()
 	{
+		slashSound.Play();
 		weaponHandler.StartAttack();
 		animator.SetBool("Sliceing", true);
 		if(sliceTimer <= 0)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -73,6 +74,11 @@ public class PlayerController : MonoBehaviour
 		{
 			DashUpdate();
 		}
+	}
+
+	private void OnMove(InputValue inputValue)
+	{
+		Debug.Log("moving");
 	}
 
 	void PlayerMovment()

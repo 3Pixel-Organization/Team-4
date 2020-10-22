@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 		};
 		foreach (Item item in itemsToSpawn)
 		{
-			SpawnLoot(new Vector3(-13, 1, -3), item);
+			//SpawnLoot(new Vector3(-13, 1, -3), item);
 		}
 	}
 
