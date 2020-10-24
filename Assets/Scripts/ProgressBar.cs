@@ -22,7 +22,9 @@ public class ProgressBar : MonoBehaviour
 	public int current;
 	[SerializeField] private Image mask;
 	[SerializeField] private Image fill;
+	[SerializeField] private Image bar;
 	[SerializeField] private Color color;
+	[SerializeField] private Color backColor;
 	[Range(1.0f, 0.0f)]
 	[SerializeField] private float barBias = 0.3f;
 	[SerializeField] private bool autoUpdate = false;
@@ -64,5 +66,6 @@ public class ProgressBar : MonoBehaviour
 		targetFill = fillAmount;
 
 		fill.color = color;
+		bar.color = backColor;
 	}
 }

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootTierEasy:
   - {fileID: 11400000, guid: 60527d0203ea019439bd3237ce5374a4, type: 2}
-  lootTierNormal: []
+  lootTierNormal:
+  - {fileID: 11400000, guid: eefed19016dd9204ca1750ae715e0aac, type: 2}
+  - {fileID: 11400000, guid: c654438fde769cb46ab8a3a320ff73cf, type: 2}
   lootTierHard: []
   lootTierHarder:
   - {fileID: 11400000, guid: a4061b380cf4b45408fa095fc5561fc0, type: 2}

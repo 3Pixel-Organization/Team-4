@@ -40,7 +40,6 @@ public class PlayerStatUI : MonoBehaviour
 		expBar.current = Mathf.RoundToInt(Player.expPoints);
 		expBar.minimum = 0;//Mathf.RoundToInt(GetExpForLevel(Player.level));
 		expBar.ValueChange();
-
 	}
 
 	private void SetupLevelText()

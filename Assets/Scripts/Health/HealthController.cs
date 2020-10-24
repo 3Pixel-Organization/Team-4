@@ -2,173 +2,188 @@
 
 namespace Health
 {
-    /// <summary>
-    /// Used to manage entity health.
-    /// </summary>
-    
-    public class HealthController : MonoBehaviour
-    {
-        [SerializeField] private int _currentHealth = 100;
-        private float _currentDamageCooldown = 0;
+	/// <summary>
+	/// Used to manage entity health.
+	/// </summary>
+	
+	public class HealthController : MonoBehaviour
+	{
+		[SerializeField] private int _currentHealth = 100;
+		private float _currentDamageCooldown = 0;
 
-        [Tooltip("Max health this character can have.")]
-        public int MaxHealth = 100;
+		[Tooltip("Max health this character can have.")]
+		public int MaxHealth = 100;
 
-        //todo: implement this
-        [Tooltip("Duration (in milliseconds) during which the character cannot take damage.")]
-        public int DamageCooldown = 100;
+		//todo: implement this
+		[Tooltip("Duration (in milliseconds) during which the character cannot take damage.")]
+		public int DamageCooldown = 100;
 
-        /// <summary>
-        /// Invoked when entity health has changed.
-        /// </summary>
-        public event Delegates.HealthEvent HealthChange;
+		[SerializeField] private ProgressBar healthBar;
 
-        /// <summary>
-        /// Invoked when entity received additional health.
-        /// </summary>
-        public event Delegates.HealthEvent HealthIncrease;
+		/// <summary>
+		/// Invoked when entity health has changed.
+		/// </summary>
+		public event Delegates.HealthEvent HealthChange;
 
-        /// <summary>
-        /// Invoked when entity takes damage.
-        /// </summary>
-        public event Delegates.HealthEvent TakeDamage;
+		/// <summary>
+		/// Invoked when entity received additional health.
+		/// </summary>
+		public event Delegates.HealthEvent HealthIncrease;
 
-        /// <summary>
-        /// Called when entity damage cooldown has ended. 
-        /// </summary>
-        public event Delegates.StateEvent DamageCooldownEnd;
+		/// <summary>
+		/// Invoked when entity takes damage.
+		/// </summary>
+		public event Delegates.HealthEvent TakeDamage;
 
-        /// <summary>
-        /// Called when this entity has been killed.
-        /// </summary>
-        public event Delegates.StateEvent Death;
+		/// <summary>
+		/// Called when entity damage cooldown has ended. 
+		/// </summary>
+		public event Delegates.StateEvent DamageCooldownEnd;
 
-        /// <summary>
-        /// Determines whether this entity is alive or not.
-        /// </summary>
-        public bool IsAlive => CurrentHealth > 0;
+		/// <summary>
+		/// Called when this entity has been killed.
+		/// </summary>
+		public event Delegates.StateEvent Death;
 
-        /// <summary>
-        /// Returns the current number of health this character has.
-        /// </summary>
-        public int CurrentHealth
-        {
-            get => _currentHealth;
-            private set
-            {
-                // check if health value has changed
-                if (_currentHealth == value)
-                    return;
+		/// <summary>
+		/// Determines whether this entity is alive or not.
+		/// </summary>
+		public bool IsAlive => CurrentHealth > 0;
 
-                var healthDelta = value - _currentHealth;
-                _currentHealth = value;
-                OnHealthChange(_currentHealth, MaxHealth, healthDelta);
-            }
-        }
+		/// <summary>
+		/// Returns the current number of health this character has.
+		/// </summary>
+		public int CurrentHealth
+		{
+			get => _currentHealth;
+			private set
+			{
+				// check if health value has changed
+				if (_currentHealth == value)
+					return;
 
-        /// <summary>
-        /// Returns whether this character is invulnerable to damage or not.
-        /// </summary>
-        public bool IsInvulnerable => _currentDamageCooldown > 0;
+				var healthDelta = value - _currentHealth;
+				_currentHealth = value;
+				OnHealthChange(_currentHealth, MaxHealth, healthDelta);
+			}
+		}
 
-        private void Start()
-        {
-            CurrentHealth = MaxHealth;
-        }
+		/// <summary>
+		/// Returns whether this character is invulnerable to damage or not.
+		/// </summary>
+		public bool IsInvulnerable => _currentDamageCooldown > 0;
 
-        private void Update()
-        {
-            // update current damage cooldown
-            if (IsInvulnerable && DamageCooldown > 0)
-            {
-                _currentDamageCooldown -= Time.timeScale;
+		private void Start()
+		{
+			CurrentHealth = MaxHealth;
+			UpdateHealthBar();
+		}
 
-                // check if character is no longer invulnerable
-                if (!IsInvulnerable)
-                    OnDamageCooldownEnd();
+		private void Update()
+		{
+			// update current damage cooldown
+			if (IsInvulnerable && DamageCooldown > 0)
+			{
+				_currentDamageCooldown -= Time.timeScale;
+
+				// check if character is no longer invulnerable
+				if (!IsInvulnerable)
+					OnDamageCooldownEnd();
 
 
-            }
-        }
+			}
+		}
 
-        /// <summary>
-        /// Resets the damage cooldown timer, making this character temporarily invulnerable to damage.
-        /// </summary>
-        private void ResetDamageCooldownTimer()
-        {
-            _currentDamageCooldown = DamageCooldown;
-        }
+		/// <summary>
+		/// Resets the damage cooldown timer, making this character temporarily invulnerable to damage.
+		/// </summary>
+		private void ResetDamageCooldownTimer()
+		{
+			_currentDamageCooldown = DamageCooldown;
+		}
 
-        /// <summary>
-        /// Gives additional health to this character.
-        /// </summary>
-        /// <param name="amount">Amount of health to give.</param>
-        public void GiveHealth(int amount)
-        {
-            // do not give health if there's nothing to give or if entity is dead
-            if (amount == 0 || !IsAlive)
-                return;
+		void UpdateHealthBar()
+		{
+			if(healthBar != null)
+			{
+				healthBar.maximum = MaxHealth;
+				healthBar.current = _currentHealth;
+				healthBar.minimum = 0;
+				healthBar.ValueChange();
+			}
+		}
 
-            var newHealth = CurrentHealth + amount;
+		/// <summary>
+		/// Gives additional health to this character.
+		/// </summary>
+		/// <param name="amount">Amount of health to give.</param>
+		public void GiveHealth(int amount)
+		{
+			// do not give health if there's nothing to give or if entity is dead
+			if (amount == 0 || !IsAlive)
+				return;
 
-            if (newHealth > MaxHealth)
-                newHealth = MaxHealth;
+			var newHealth = CurrentHealth + amount;
 
-            CurrentHealth = newHealth;
-            OnHealthIncrease(CurrentHealth, MaxHealth, amount);
-        }
+			if (newHealth > MaxHealth)
+				newHealth = MaxHealth;
 
-        /// <summary>
-        /// Damages this entity
-        /// </summary>
-        /// <param name="amount">Amount of damage to take.</param>
-        public void Damage(int amount)
-        {
-            // do not take damage if character is invulnerable or dead
-            if (IsInvulnerable || !IsAlive)
-                return;
+			CurrentHealth = newHealth;
+			OnHealthIncrease(CurrentHealth, MaxHealth, amount);
+		}
 
-            var newHealth = CurrentHealth - amount;
+		/// <summary>
+		/// Damages this entity
+		/// </summary>
+		/// <param name="amount">Amount of damage to take.</param>
+		public void Damage(int amount)
+		{
+			// do not take damage if character is invulnerable or dead
+			if (IsInvulnerable || !IsAlive)
+				return;
 
-            // check if entity survived damage
-            if (newHealth <= 0)
-            {
-                CurrentHealth = 0;
-                OnDeath();
-            }
-            else
-            {
-                CurrentHealth = newHealth;
-                OnTakeDamage(CurrentHealth, MaxHealth, amount);
-                ResetDamageCooldownTimer();
-            }
+			var newHealth = CurrentHealth - amount;
 
-           // Debug.Log(CurrentHealth);
-        }
+			// check if entity survived damage
+			if (newHealth <= 0)
+			{
+				CurrentHealth = 0;
+				OnDeath();
+			}
+			else
+			{
+				CurrentHealth = newHealth;
+				OnTakeDamage(CurrentHealth, MaxHealth, amount);
+				ResetDamageCooldownTimer();
+			}
 
-        protected virtual void OnHealthChange(int currentHealth, int maxHealth, int healthDelta)
-        {
-            HealthChange?.Invoke(currentHealth, maxHealth, healthDelta);
-        }
+		   // Debug.Log(CurrentHealth);
+		}
 
-        protected virtual void OnHealthIncrease(int currentHealth, int maxHealth, int healthDelta)
-        {
-            HealthIncrease?.Invoke(currentHealth, maxHealth, healthDelta);
-        }
+		protected virtual void OnHealthChange(int currentHealth, int maxHealth, int healthDelta)
+		{
+			HealthChange?.Invoke(currentHealth, maxHealth, healthDelta);
+			UpdateHealthBar();
+		}
 
-        protected virtual void OnTakeDamage(int currentHealth, int maxHealth, int healthDelta)
-        {
-            TakeDamage?.Invoke(currentHealth, maxHealth, healthDelta);
-        }
+		protected virtual void OnHealthIncrease(int currentHealth, int maxHealth, int healthDelta)
+		{
+			HealthIncrease?.Invoke(currentHealth, maxHealth, healthDelta);
+		}
 
-        protected virtual void OnDamageCooldownEnd()
-        {
-            DamageCooldownEnd?.Invoke();
-        }
+		protected virtual void OnTakeDamage(int currentHealth, int maxHealth, int healthDelta)
+		{
+			TakeDamage?.Invoke(currentHealth, maxHealth, healthDelta);
+		}
 
-        protected virtual void OnDeath()
-        {
-            Death?.Invoke();
-        }
-    }
+		protected virtual void OnDamageCooldownEnd()
+		{
+			DamageCooldownEnd?.Invoke();
+		}
+
+		protected virtual void OnDeath()
+		{
+			Death?.Invoke();
+		}
+	}
 }

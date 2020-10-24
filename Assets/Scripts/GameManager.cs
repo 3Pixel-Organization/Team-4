@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Levels;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class GameManager : MonoBehaviour
 
 	public List<Item> currentRunItems = new List<Item>();
 	public SceneData levelData;
+
+	[SerializeField] private PlayableDirector victoryTimeline;
 
 	private void Awake()
 	{
@@ -27,7 +31,7 @@ public class GameManager : MonoBehaviour
 		};
 		foreach (Item item in itemsToSpawn)
 		{
-			SpawnLoot(new Vector3(-13, 1, -3), item);
+			//SpawnLoot(new Vector3(-13, 1, -3), item);
 		}
 	}
 
@@ -52,6 +56,7 @@ public class GameManager : MonoBehaviour
 		currentRunItems.Clear();
 		Inventory.Save();
 		Player.Save();
+		victoryTimeline.Play();
 	}
 
 	public void Loose()
@@ -71,11 +76,16 @@ public class GameManager : MonoBehaviour
 
 	public void EnemyDeath(Transform transform, Enemy enemy)
 	{
+		Player.levelSystem.GiveExp(Exp.EnemyExp(levelData.difficultyLevel + enemy.enemyPrefab.reletiveLevel, enemy.enemyPrefab.expMultiplier));
 		List<LootPrefab> prefabLoot = levelData.levelLootTable.GetLoot(enemy.enemyPrefab.enemyTier);
 		foreach (LootPrefab item in prefabLoot)
 		{
 			GameObject gameLoot = Instantiate(LootPrefab, transform.position, Quaternion.identity);
 			gameLoot.GetComponent<LootDrop>().SetupLoot(item.CreateItem(levelData.difficultyLevel));
+		}
+		if(enemy.enemyPrefab.enemyTier == EnemyTier.Boss)
+		{
+			Victory();
 		}
 	}
 

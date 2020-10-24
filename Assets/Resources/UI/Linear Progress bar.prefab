@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8301685017228581553}
   - component: {fileID: 8301685017228581567}
   m_Layer: 5
-  m_Name: Progress bar
+  m_Name: Linear Progress bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,4 +259,8 @@ MonoBehaviour:
   current: 50
   mask: {fileID: 8301685016097611443}
   fill: {fileID: 8301685015542062063}
+  bar: {fileID: 8301685017228581553}
   color: {r: 0.7686275, g: 0.8980393, b: 0.21960786, a: 1}
+  backColor: {r: 1, g: 0, b: 0, a: 1}
+  barBias: 0.3
+  autoUpdate: 0

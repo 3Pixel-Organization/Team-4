@@ -30,7 +30,7 @@ MonoBehaviour:
     id=\"7\" />\r\n            </guard>\r\n            <child>\r\n              <SubbehaviorNode
     id=\"6\" />\r\n            </child>\r\n          </GuardAndNode>\r\n        </elem>\r\n     
     </children>\r\n      <inputParams />\r\n      <outputParams />\r\n      <localParams
-    />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"3\" policy=\"WAIT_UNTIL_FALSE_AND_FAIL\"
+    />\r\n    </PrioritySelectorNode>\r\n    <ConditionEvalNode id=\"3\" policy=\"WAIT_UNTIL_TRUE_AND_COMPLETE\"
     name=\"Perception/IsTargetClose\">\r\n      <inputParams>\r\n        <inputValues>\r\n         
     <entry name=\"target\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
     blackboard=\"target\" />\r\n          <entry name=\"closeDistance\" type=\"System.Single\"
