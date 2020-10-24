@@ -449,6 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponHandler: {fileID: 1268487875}
   animator: {fileID: 729270902}
+  slashSound: {fileID: 0}
 --- !u!114 &47255874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13880,7 +13881,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 5120e215910218349806a46e250dcd74, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!4 &1596026985
 Transform:
   m_ObjectHideFlags: 0
