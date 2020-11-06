@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+	
 	[SerializeField]
 	private Joystick joystick;
 
@@ -32,20 +33,29 @@ public class PlayerController : MonoBehaviour
 
 	private bool movmentIsActive = true;
 	private bool isDashing = false;
+	private bool inputBlocked = false;
+	private bool inAttack = false;
 
 	private Vector3 dashStartPos, dashEndPos;
 	private float dashTimer;
+
+	private CharacterController characterController;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
+		characterController = GetComponent<CharacterController>();
 		animator.SetBool("Grounded", true);
+		animator.applyRootMotion = true;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		
+		inAttack = animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack");
+
 		//direction = new Vector2(-Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"));
 		direction = new Vector2(-joystick.Vertical + joystick.Horizontal, joystick.Vertical + joystick.Horizontal);
 		
@@ -54,15 +64,17 @@ public class PlayerController : MonoBehaviour
 			playerDirection = direction.normalized;
 			model.transform.eulerAngles = new Vector3(0, Vector2.SignedAngle(playerDirection, Vector2.up), 0);
 		}
-		animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.z)).magnitude/5);
+		animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)).magnitude);
 
-		if (movmentIsActive)
+		//animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)).magnitude * 1.1f);
+
+		if (movmentIsActive && !inAttack)
 		{
 			PlayerMovment();
 		}
 		else
 		{
-			rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.2f);
+			//rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.2f);
 		}
 
 		if (Input.GetKeyDown(KeyCode.LeftControl) && !isDashing)
@@ -85,7 +97,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (movementExact)
 		{
-			rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
+			//rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
+			characterController.Move(new Vector3(direction.x * moveSpeed * Time.deltaTime, 0, direction.y * moveSpeed * Time.deltaTime));
 			return;
 		}
 
@@ -147,4 +160,16 @@ public class PlayerController : MonoBehaviour
 	{
 		movmentIsActive = false;
 	}
+
+	/*private void OnAnimatorMove()
+	{
+		Animator animator = GetComponent<Animator>();
+
+		if (animator)
+		{
+			Vector3 newPosition = transform.position;
+			newPosition += new Vector3(playerDirection.x * animator.GetFloat("AttackMove") * Time.deltaTime, 0, playerDirection.y * animator.GetFloat("AttackMove") * Time.deltaTime);
+			transform.position = newPosition;
+		}
+	}*/
 }

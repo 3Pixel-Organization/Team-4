@@ -35,7 +35,8 @@ public class PlayerManager : MonoBehaviour
 		if(sliceTimer <= 0)
 		{
 			animator.SetBool("Sliceing", false);
-			weaponHandler.EndAttack();
+			//animator.applyRootMotion = false;
+			//weaponHandler.EndAttack();
 		}
 		sliceTimer -= Time.deltaTime;
 	}
@@ -48,14 +49,16 @@ public class PlayerManager : MonoBehaviour
 
 	public void SliceAttack()
 	{
-		slashSound.Play();
-		weaponHandler.StartAttack();
+		//slashSound.Play();
+		//weaponHandler.StartAttack();
 		animator.SetBool("Sliceing", true);
+		animator.applyRootMotion = true;
 		if(sliceTimer <= 0)
 		{
-			animator.SetTrigger("Slice");
+			
 		}
-		sliceTimer = 0.3f;
+		animator.SetTrigger("Slice");
+		sliceTimer = 2f;
 	}
 
 	void Slice()
