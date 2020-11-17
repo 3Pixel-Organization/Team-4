@@ -28,4 +28,16 @@ public class GameEvents : MonoBehaviour
 			OnPlayerLevelUp();
 		}
 	}
+
+	public event Action<int> onAbilityCooldownStart;
+	public void AbilityCooldownStart(int id)
+	{
+		onAbilityCooldownStart?.Invoke(id);
+	}
+
+	public event Action<int> onAbilityCooldownEnd;
+	public void AbilityCooldownEnd(int id)
+	{
+		onAbilityCooldownEnd?.Invoke(id);
+	}
 }

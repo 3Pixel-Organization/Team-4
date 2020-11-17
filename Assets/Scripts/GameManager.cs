@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using Levels;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
 		Inventory.Save();
 		Player.Save();
 		victoryTimeline.Play();
+		SceneManager.LoadScene("Level00");
 	}
 
 	public void Loose()

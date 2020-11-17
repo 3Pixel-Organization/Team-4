@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Inventory
 {
@@ -43,6 +44,16 @@ public class Inventory
 	public static bool RemoveItem(Item item)
 	{
 		return items.Remove(item);
+	}
+
+	/// <summary>
+	/// In editor help to clear player inventory
+	/// </summary>
+	[MenuItem("Tools/Inventory/Clear inventory save")]
+	private static void ClearInventorySave()
+	{
+		items.Clear();
+		Save();
 	}
 
 	/// <summary>

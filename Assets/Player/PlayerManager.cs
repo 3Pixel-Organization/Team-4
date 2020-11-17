@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private Animator animator;
 	[SerializeField] private AudioSource slashSound;
 
-	private float sliceTimer;
+	private float comboTimer;
 
 	private void Awake()
 	{
@@ -32,33 +32,24 @@ public class PlayerManager : MonoBehaviour
 			SliceAttack();
 		}
 
-		if(sliceTimer <= 0)
+		if(comboTimer <= 0)
 		{
-			animator.SetBool("Sliceing", false);
-			//animator.applyRootMotion = false;
 			weaponHandler.EndAttack();
+			comboTimer = 0;
 		}
-		sliceTimer -= Time.deltaTime;
-	}
-
-	public static float GetExpForLevel(int level)
-	{
-		float returnValue = (float)level * 1.2f * 100f;
-		return returnValue;
+		animator.SetFloat("ComboTimer", comboTimer);
+		if (comboTimer > 0)
+		{
+			comboTimer -= Time.deltaTime;
+		}
 	}
 
 	public void SliceAttack()
 	{
 		//slashSound.Play();
 		weaponHandler.StartAttack();
-		animator.SetBool("Sliceing", true);
-		animator.applyRootMotion = true;
-		if(sliceTimer <= 0)
-		{
-			
-		}
 		animator.SetTrigger("Slice");
-		sliceTimer = 2f;
+		comboTimer = 0.5f;
 	}
 
 	void Slice()

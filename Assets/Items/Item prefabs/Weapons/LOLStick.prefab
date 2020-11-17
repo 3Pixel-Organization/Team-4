@@ -105,6 +105,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3070308972438374847}
   - component: {fileID: 5761455537800181916}
+  - component: {fileID: 5129490347739032041}
+  - component: {fileID: 4165798241183423017}
   m_Layer: 0
   m_Name: LOLStick
   m_TagString: Untagged
@@ -134,7 +136,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551336724013247954}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55048b20443c1d448a7fcbad0aa72ad9, type: 3}
   m_Name: 
@@ -142,3 +144,33 @@ MonoBehaviour:
   damageAmt: 10000
   checkSphereRadius: 1
   checkFrequency: 2
+  CheckLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &5129490347739032041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551336724013247954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd26c95fd007ad7419bcc52fcf1b4f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmt: 1000
+  layer: 9
+--- !u!65 &4165798241183423017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551336724013247954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.0271735, z: 0.3562842}
+  m_Center: {x: 0, y: 1.0135868, z: 0}

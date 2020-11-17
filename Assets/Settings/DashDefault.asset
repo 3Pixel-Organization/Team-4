@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.1
   distance: 7.5
+  speed: 100
+  cooldown: 3
