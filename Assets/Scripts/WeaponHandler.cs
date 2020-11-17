@@ -8,13 +8,15 @@ public class WeaponHandler : MonoBehaviour
 	public Weapon weapon;
 
 	private Damage damage;
+	private Attack attack;
 
 	public void SetupWeapon(Weapon weapon)
 	{
 		this.weapon = weapon;
 		GameObject weaponObj = Instantiate(weapon.model, transform);
-		damage = weaponObj.GetComponentInChildren<Damage>();
-		damage.enabled = false;
+		attack = weaponObj.GetComponentInChildren<Attack>();
+		//damage = weaponObj.GetComponentInChildren<Damage>();
+		//damage.enabled = false;
 	}
 
 	public void StartAttack()
@@ -23,6 +25,10 @@ public class WeaponHandler : MonoBehaviour
 		{
 			damage.enabled = true;
 		}
+		if(attack != null)
+		{
+			attack.IsAttacking = true;
+		}
 	}
 
 	public void EndAttack()
@@ -30,6 +36,10 @@ public class WeaponHandler : MonoBehaviour
 		if (damage != null)
 		{
 			damage.enabled = false;
+		}
+		if (attack != null)
+		{
+			attack.IsAttacking = false;
 		}
 	}
 	

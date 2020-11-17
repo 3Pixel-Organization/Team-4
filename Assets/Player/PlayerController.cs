@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody rb;
 
 	private bool movmentIsActive = true;
-	private bool isDashing = false;
+	private bool isDashing = false, dashIsReady = true;
 	private bool inputBlocked = false;
 	private bool inAttack = false;
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		
+		animator.SetFloat("StateTime", Mathf.Repeat(animator.GetCurrentAnimatorStateInfo(1).normalizedTime, 1f));
 		inAttack = animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack");
 
 		//direction = new Vector2(-Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"));
@@ -64,7 +64,14 @@ public class PlayerController : MonoBehaviour
 			playerDirection = direction.normalized;
 			model.transform.eulerAngles = new Vector3(0, Vector2.SignedAngle(playerDirection, Vector2.up), 0);
 		}
-		animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)).magnitude);
+		if (movmentIsActive)
+		{
+			animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)).magnitude);
+		}
+		else
+		{
+			animator.SetFloat("MoveSpeed", 0);
+		}
 
 		//animator.SetFloat("MoveSpeed", new Vector2(Mathf.Abs(direction.x), Mathf.Abs(direction.y)).magnitude * 1.1f);
 
@@ -77,9 +84,9 @@ public class PlayerController : MonoBehaviour
 			//rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.2f);
 		}
 
-		if (Input.GetKeyDown(KeyCode.LeftControl) && !isDashing)
+		if (Input.GetKeyDown(KeyCode.LeftControl))
 		{
-			StartDash();
+			TriggerDash();
 		}
 
 		if (isDashing)
@@ -97,31 +104,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if (movementExact)
 		{
-			//rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
 			characterController.Move(new Vector3(direction.x * moveSpeed * Time.deltaTime, 0, direction.y * moveSpeed * Time.deltaTime));
-			return;
-		}
-
-		Vector3 velocityToAdd = new Vector3(direction.x, 0, direction.y) * Time.deltaTime * playerSettings.movementSpeed;
-		rb.velocity += velocityToAdd;
-		rb.velocity -= Vector3.Lerp(Vector3.zero, rb.velocity, playerSettings.moveDampening * Time.deltaTime);
-
-		float totalSpeed = new Vector2(Mathf.Abs(rb.velocity.x), Mathf.Abs(rb.velocity.z)).magnitude;
-
-		if (totalSpeed >= playerSettings.maxSpeed)
-		{
-			float difference = playerSettings.maxSpeed / totalSpeed;
-			rb.velocity = new Vector3(rb.velocity.x * difference, rb.velocity.y, rb.velocity.z * difference);
-		}
-		if (Input.GetKeyDown(KeyCode.Space))//jumping currently deactivated
-		{
-			rb.AddForce(Vector3.up * playerSettings.jumpForce);
 		}
 	}
 
 	public void TriggerDash()
 	{
-		if (!isDashing)
+		if (!isDashing && dashIsReady)
 		{
 			StartDash();
 		}
@@ -137,12 +126,25 @@ public class PlayerController : MonoBehaviour
 		dashTimer = 0;
 		dashParticles.Play();
 		animator.SetTrigger("Dash");
+		StartCoroutine(DashCoolDown());
 	}
 
 	void DashUpdate()
 	{
 		dashTimer += Time.deltaTime / dashSettings.duration;
-		transform.position = Vector3.Lerp(dashStartPos, dashEndPos, dashTimer);
+		//transform.position = Vector3.Lerp(dashStartPos, dashEndPos, dashTimer);
+		
+		//This dash code is temporary
+		characterController.Move((new Vector3(playerDirection.x, 0, playerDirection.y) * dashSettings.speed) * Time.deltaTime);
+	}
+
+	private IEnumerator DashCoolDown()
+	{
+		dashIsReady = false;
+		GameEvents.current.AbilityCooldownStart(1);
+		yield return new WaitForSeconds(dashSettings.cooldown);
+		GameEvents.current.AbilityCooldownEnd(1);
+		dashIsReady = true;
 	}
 
 	void EndDash()

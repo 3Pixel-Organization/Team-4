@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class GameplayUIManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameplayUIManager : MonoBehaviour
 
 	[SerializeField] private GameObject gameplayUI;
 	[SerializeField] private GameObject inventoryUI;
+	[SerializeField] private PlayableDirector forgeTransition;
+	[SerializeField] private GameObject playerCam;
 
 	private void Awake()
 	{
@@ -33,6 +36,7 @@ public class GameplayUIManager : MonoBehaviour
 	public void OpenInventory()
 	{
 		GameManager.current.PauseGame();
+		playerCam.SetActive(false);
 		inventoryUI.SetActive(true);
 		gameplayUI.SetActive(false);
 	}

@@ -27,4 +27,9 @@ public class HubLevelHandler : MonoBehaviour
 	{
 		SceneManager.LoadScene(levelName);
 	}
+
+	public void QuitMenu()
+	{
+		GetComponentInParent<Canvas>().gameObject.SetActive(false);
+	}
 }
