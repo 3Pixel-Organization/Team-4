@@ -30,6 +30,8 @@ public class Attack : MonoBehaviour
 	public int damageAmt;
 
 	[SerializeField] private int layer;
+	[SerializeField] private bool hasTrail;
+	[SerializeField] private ParticleSystem particleSystem;
 
 	private List<HealthController> healthControllers;
 
@@ -49,11 +51,19 @@ public class Attack : MonoBehaviour
 	{
 		Debug.Log("Starting attack");
 		healthControllers.Clear();
+		if (hasTrail)
+		{
+			particleSystem.Play();
+		}
 	}
 
 	void EndAttack()
 	{
 		Debug.Log("Ending attack");
+		if (hasTrail)
+		{
+			particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+		}
 	}
 
 	void GiveDamage()
