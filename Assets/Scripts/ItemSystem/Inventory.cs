@@ -49,12 +49,12 @@ public class Inventory
 	/// <summary>
 	/// In editor help to clear player inventory
 	/// </summary>
-	[MenuItem("Tools/Inventory/Clear inventory save")]
+	/*[MenuItem("Tools/Inventory/Clear inventory save")]
 	private static void ClearInventorySave()
 	{
 		items.Clear();
 		Save();
-	}
+	}*/
 
 	/// <summary>
 	/// Loads the inventory from a file
