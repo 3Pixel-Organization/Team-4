@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
 
 		if(comboTimer <= 0)
 		{
-			weaponHandler.EndAttack();
+			//weaponHandler.EndAttack();
 			comboTimer = 0;
 		}
 		animator.SetFloat("ComboTimer", comboTimer);
@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
 	public void SliceAttack()
 	{
 		//slashSound.Play();
-		weaponHandler.StartAttack();
+		//weaponHandler.StartAttack();
 		animator.SetTrigger("Slice");
 		comboTimer = 0.5f;
 	}
@@ -55,6 +55,21 @@ public class PlayerManager : MonoBehaviour
 	void Slice()
 	{
 
+	}
+
+	private void PlaySound()
+	{
+		slashSound.Play();
+	}
+
+	private void StartAttack()
+	{
+		weaponHandler.StartAttack();
+	}
+
+	private void EndAttack()
+	{
+		weaponHandler.EndAttack();
 	}
 
 	private void OnTriggerEnter(Collider other)
