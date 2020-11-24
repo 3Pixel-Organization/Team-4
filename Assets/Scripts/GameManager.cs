@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 		Inventory.Save();
 		Player.Save();
 		victoryTimeline.Play();
-		SceneManager.LoadScene("Level00");
+		//SceneManager.LoadScene("Level00");
 	}
 
 	public void Loose()
