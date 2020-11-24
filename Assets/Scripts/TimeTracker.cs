@@ -30,14 +30,14 @@ public class TimeTracker : MonoBehaviour
 
 	private void TimerStart()
 	{
-        timerIsActive = true;
+		timerIsActive = true;
 
-    }
+	}
 	
 
 	private void TimerEnd()
 	{
-        timerIsActive = false;
+		timerIsActive = false;
 
 	}
 

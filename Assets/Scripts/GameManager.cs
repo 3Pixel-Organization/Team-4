@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 		{
 			//SpawnLoot(new Vector3(-13, 1, -3), item);
 		}
+		GameEvents.current.LevelStart();
 	}
 
 	// Update is called once per frame
@@ -58,7 +59,8 @@ public class GameManager : MonoBehaviour
 		Inventory.Save();
 		Player.Save();
 		victoryTimeline.Play();
-		SceneManager.LoadScene("Level00");
+		GameEvents.current.LevelEnd();
+		//SceneManager.LoadScene("Level00");
 	}
 
 	public void Loose()
