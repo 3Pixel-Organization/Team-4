@@ -11,6 +11,18 @@ public class GameEvents : MonoBehaviour
 		current = this;
 	}
 
+	public event Action OnLevelStart;
+	public void LevelStart()
+	{
+		OnLevelStart?.Invoke();
+	}
+
+	public event Action OnLevelEnd;
+	public void LevelEnd()
+	{
+		OnLevelEnd?.Invoke();
+	}
+
 	public event Action<int> onEnemySpawnTriggerEnter;
 	public void EnemySpawnTriggerEnter(int id)
 	{
