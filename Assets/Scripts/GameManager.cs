@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using Levels;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using EventsSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
 		{
 			//SpawnLoot(new Vector3(-13, 1, -3), item);
 		}
+		GameEvents.current.level.LevelStart();
 	}
 
 	// Update is called once per frame
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
 		Inventory.Save();
 		Player.Save();
 		victoryTimeline.Play();
+		GameEvents.current.level.LevelEnd();
 		//SceneManager.LoadScene("Level00");
 	}
 

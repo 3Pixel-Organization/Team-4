@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+using EventsSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -141,9 +142,9 @@ public class PlayerController : MonoBehaviour
 	private IEnumerator DashCoolDown()
 	{
 		dashIsReady = false;
-		GameEvents.current.AbilityCooldownStart(1);
+		GameEvents.current.player.AbilityCooldownStart(1);
 		yield return new WaitForSeconds(dashSettings.cooldown);
-		GameEvents.current.AbilityCooldownEnd(1);
+		GameEvents.current.player.AbilityCooldownEnd(1);
 		dashIsReady = true;
 	}
 
