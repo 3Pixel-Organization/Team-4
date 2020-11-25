@@ -5,10 +5,11 @@ using EventsSystem;
 
 public class ComboHandler : MonoBehaviour
 {
-	int comboCount;
+	public int comboCount;
 	float comboTimer;
 
-	public bool comboIsActive
+	private bool comboIsActive;
+	public bool ComboIsActive
 	{
 		get { return comboIsActive; }
 		private set
