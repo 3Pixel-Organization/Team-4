@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 using Levels;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using EventsSystem;
+using EventSystem;
 
 public class GameManager : MonoBehaviour
 {
