@@ -1,52 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using EventSystem;
 
+
+public bool isTimerRunning =  false;
+public float time;
 public class TimeTracker : MonoBehaviour
-{
-	private float time;
-	private bool timerIsActive;
 
-	public int Minutes 
-	{
-		get
-        {
-			return Mathf.FloorToInt(time / 60);
-		}
-	}
-    public int Seconds{
-        get
-        {
-            return (int)time % 60;
+{
+	void Start(){
+        GameEvents.current.LevelEvents.OnLevelStart += TimerStart;
+        GameEvents.current.LevelEvents.OnLevelEnd  += TimerEnd;    
+    }
+    void TimerStart(){
+        isTimerRunning = true;
+    }
+    void Update(){
+        if(isTimerRunning){
+            time = Time.deltatime;
         }
 
     }
+    void TimerEnd(){
+        isTimerRunning = false;
+    }
 
-	private void Start()
-	{
-		GameEvents.current.OnLevelStart += TimerStart;
-		GameEvents.current.OnLevelEnd += TimerEnd;
-	}
-
-	private void Update()
-	{
-		if(timerIsActive)
-		{
-			time += Time.deltaTime;
-		}
-	}
-
-	public void TimerStart()
-	{
-		timerIsActive = true;
-
-	}
-	
-
-	public void TimerEnd()
-	{
-		timerIsActive = false;
-
-	}
 
 }
