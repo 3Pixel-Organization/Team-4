@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSystem;
 
 public class TimeTracker : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class TimeTracker : MonoBehaviour
 
 	private void Start()
 	{
-		GameEvents.current.OnLevelStart += TimerStart;
-		GameEvents.current.OnLevelEnd += TimerEnd;
+		GameEvents.current.level.OnLevelStart += TimerStart;
+		GameEvents.current.level.OnLevelEnd += TimerEnd;
 	}
 
 	private void Update()
