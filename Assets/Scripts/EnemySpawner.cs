@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using EventSystem;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
 
 	private void Start()
 	{
-		GameEvents.current.onEnemySpawnTriggerEnter += SpawnEnemy;
+		GameEvents.current.spawn.OnEnemySpawnTriggerEnter += SpawnEnemy;
 	}
 
 	private void SpawnEnemy(int areaID)

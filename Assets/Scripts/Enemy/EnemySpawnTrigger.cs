@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSystem;
 
 public class EnemySpawnTrigger : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class EnemySpawnTrigger : MonoBehaviour
 	{
 		if (other.CompareTag("Player") && !triggerd)
 		{
-			GameEvents.current.EnemySpawnTriggerEnter(areaID);
+			GameEvents.current.spawn.EnemySpawnTriggerEnter(areaID);
 			triggerd = true;
 		}
 	}
