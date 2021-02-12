@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Health;
+using EventSystem;
 
 public class Attack : MonoBehaviour
 {
@@ -64,6 +65,17 @@ public class Attack : MonoBehaviour
 		{
 			particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
 		}
+		if(healthControllers.Count > 0)
+		{
+			PlayerManager playerManager = gameObject.GetComponentInParent<PlayerManager>();
+			if (playerManager != null)
+			{
+				for (int i = 0; i < healthControllers.Count; i++)
+				{
+					GameEvents.current.player.DamageEnemy();
+				}
+			}
+		}
 	}
 
 	void GiveDamage()
@@ -79,7 +91,7 @@ public class Attack : MonoBehaviour
 	{
 		if (isAttacking)
 		{
-			if (collision.gameObject.layer == layer)
+			if (collision.gameObject.layer != gameObject.layer)
 			{
 				if(collision.gameObject.TryGetComponent<HealthController>(out HealthController hitHealthController))
 				{

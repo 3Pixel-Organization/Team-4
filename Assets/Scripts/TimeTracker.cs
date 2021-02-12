@@ -8,12 +8,20 @@ public class TimeTracker : MonoBehaviour
 	private float time;
 	private bool timerIsActive;
 
-	public int Hours 
+	public int Minutes 
 	{
-		get{
-			return Mathf.FloorToInt(time / 60 / 60);
+		get
+        {
+			return Mathf.FloorToInt(time / 60);
 		}
 	}
+    public int Seconds{
+        get
+        {
+            return (int)time % 60;
+        }
+
+    }
 
 	private void Start()
 	{
@@ -29,14 +37,14 @@ public class TimeTracker : MonoBehaviour
 		}
 	}
 
-	private void TimerStart()
+	public void TimerStart()
 	{
 		timerIsActive = true;
 
 	}
 	
 
-	private void TimerEnd()
+	public void TimerEnd()
 	{
 		timerIsActive = false;
 
