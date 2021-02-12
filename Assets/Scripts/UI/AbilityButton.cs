@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EventSystem;
 
 public class AbilityButton : MonoBehaviour
 {
@@ -14,14 +15,14 @@ public class AbilityButton : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		GameEvents.current.onAbilityCooldownStart += CooldownStart;
-		GameEvents.current.onAbilityCooldownEnd += CooldownEnd;
+		GameEvents.current.player.OnAbilityCooldownStart += CooldownStart;
+		GameEvents.current.player.OnAbilityCooldownEnd += CooldownEnd;
 	}
 
 	private void OnDestroy()
 	{
-		GameEvents.current.onAbilityCooldownStart -= CooldownStart;
-		GameEvents.current.onAbilityCooldownEnd -= CooldownEnd;
+		GameEvents.current.player.OnAbilityCooldownStart -= CooldownStart;
+		GameEvents.current.player.OnAbilityCooldownEnd -= CooldownEnd;
 	}
 
 	void CooldownStart(int id)
