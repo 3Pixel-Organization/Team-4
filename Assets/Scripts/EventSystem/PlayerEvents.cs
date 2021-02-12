@@ -24,5 +24,11 @@ namespace EventSystem
 		{
 			OnAbilityCooldownEnd?.Invoke(id);
 		}
+
+		public event Action OnDamageEnemy;
+		public void DamageEnemy()
+		{
+			OnDamageEnemy?.Invoke();
+		}
 	}
 }
