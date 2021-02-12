@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Health;
-using EventsSystem;
+using EventSystem;
 
 public class Attack : MonoBehaviour
 {
