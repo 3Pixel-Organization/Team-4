@@ -10,7 +10,7 @@ env:
 
 jobs:
   buildForAndroid:
-    name: Unity 2020.2.0f1 - Android
+    name: Unity 2020.2.3f1 - Android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
         id: unityBuild
         with:
           projectPath: .
-          unityVersion: 2020.2.0f1
+          unityVersion: 2020.2.3f1
           targetPlatform: Android
           versioning: Semantic
       - name: Rename APK
