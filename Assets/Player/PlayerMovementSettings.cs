@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Settings/Player settings")]
-public class PlayerSettings : ScriptableObject
+public class PlayerMovementSettings : ScriptableObject
 {
 	public float movementSpeed;
 	public float maxSpeed;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using EventSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	private Joystick joystick;
 
-	[SerializeField]
-	private PlayerSettings playerSettings;
+	[FormerlySerializedAs("playerSettings")] [SerializeField]
+	private PlayerMovementSettings playerMovementSettings;
 
 	[SerializeField]
 	private DashSettings dashSettings;
