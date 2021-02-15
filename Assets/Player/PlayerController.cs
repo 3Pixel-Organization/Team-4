@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	private Joystick joystick;
 
 	[SerializeField]
-	private PlayerSettings playerSettings;
+	private PlayerMovmentProps playerMovmentProps;
 
 	[SerializeField]
 	private DashSettings dashSettings;
