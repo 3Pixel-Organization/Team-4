@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using EventSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {

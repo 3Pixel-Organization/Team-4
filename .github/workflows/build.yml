@@ -1,0 +1,44 @@
+name: '🔧 Build Project'
+
+on:
+  pull_request: {}
+  push: { branches: [master] }
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  PROJECT_NAME: Neon Ninja
+
+jobs:
+  buildForAndroid:
+    name: Unity 2020.2.3f1 - Android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/cache@v1.1.0
+        with:
+          path: ./Library
+          key: Library-Cache-Android
+          restore-keys: |
+            Library-
+      - name: Free Disk Space for Android
+        run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          docker rmi $(docker image ls -aq)
+          df -h
+      - uses: webbertakken/unity-builder@v2.0-alpha-6
+        id: unityBuild
+        with:
+          projectPath: .
+          unityVersion: 2020.2.3f1
+          targetPlatform: Android
+          versioning: Semantic
+      - name: Rename APK
+        run: sudo cp build/Android/Android.apk "build/Android/${{ env.PROJECT_NAME }} v${{ steps.unityBuild.outputs.buildVersion }}.apk"
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.PROJECT_NAME }} ${{ steps.unityBuild.outputs.buildVersion }} Android
+          path: build/Android/${{ env.PROJECT_NAME }} v${{ steps.unityBuild.outputs.buildVersion }}.apk
