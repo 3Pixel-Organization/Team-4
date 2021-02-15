@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	private Joystick joystick;
 
-	[FormerlySerializedAs("playerSettings")] [SerializeField]
-	private PlayerMovementSettings playerMovementSettings;
+	[SerializeField]
+	private PlayerMovmentProps playerMovmentProps;
 
 	[SerializeField]
 	private DashSettings dashSettings;
