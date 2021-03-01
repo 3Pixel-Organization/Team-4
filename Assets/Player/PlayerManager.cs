@@ -64,12 +64,12 @@ public class PlayerManager : MonoBehaviour
 
 	private void StartAttack()
 	{
-		weaponHandler.StartAttack();
+		//weaponHandler.StartAttack();
 	}
 
 	private void EndAttack()
 	{
-		weaponHandler.EndAttack();
+		//weaponHandler.EndAttack();
 	}
 
 	private void OnTriggerEnter(Collider other)

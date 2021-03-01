@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//rb.velocity = Vector3.forward * 10000;
 		animator.SetFloat("StateTime", Mathf.Repeat(animator.GetCurrentAnimatorStateInfo(1).normalizedTime, 1f));
 		inAttack = animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack");
 
@@ -107,6 +108,8 @@ public class PlayerController : MonoBehaviour
 		{
 			characterController.Move(new Vector3(direction.x * moveSpeed * Time.deltaTime, 0, direction.y * moveSpeed * Time.deltaTime));
 		}
+		//rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
+		
 	}
 
 	public void TriggerDash()

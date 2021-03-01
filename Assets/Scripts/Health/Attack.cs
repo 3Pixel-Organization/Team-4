@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Health;
 using EventSystem;
+using UnityEngine.VFX;
 
 public class Attack : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Attack : MonoBehaviour
 			if(isAttacking && !value)
 			{
 				isAttacking = false;
-				GiveDamage();
+				//GiveDamage();
 				EndAttack();
 			}
 		}
@@ -32,7 +33,9 @@ public class Attack : MonoBehaviour
 
 	[SerializeField] private int layer;
 	[SerializeField] private bool hasTrail;
+	[SerializeField] private bool hasEffect;
 	[SerializeField] private ParticleSystem particleSystem;
+	[SerializeField] private VisualEffect visualEffect;
 
 	private List<HealthController> healthControllers;
 
@@ -56,6 +59,10 @@ public class Attack : MonoBehaviour
 		{
 			particleSystem.Play();
 		}
+		if (hasEffect)
+		{
+			visualEffect.Play();
+		}
 	}
 
 	void EndAttack()
@@ -65,7 +72,11 @@ public class Attack : MonoBehaviour
 		{
 			particleSystem.Stop(false, ParticleSystemStopBehavior.StopEmitting);
 		}
-		if(healthControllers.Count > 0)
+		if (hasEffect)
+		{
+			visualEffect.Stop();
+		}
+		if (healthControllers.Count > 0)
 		{
 			PlayerManager playerManager = gameObject.GetComponentInParent<PlayerManager>();
 			if (playerManager != null)
@@ -98,6 +109,25 @@ public class Attack : MonoBehaviour
 					if (!healthControllers.Contains(hitHealthController))
 					{
 						healthControllers.Add(hitHealthController);
+						hitHealthController.Damage(damageAmt);
+					}
+				}
+			}
+		}
+	}
+
+	private void OnCollisionStay(Collision collision)
+	{
+		if (isAttacking)
+		{
+			if (collision.gameObject.layer != gameObject.layer)
+			{
+				if (collision.gameObject.TryGetComponent<HealthController>(out HealthController hitHealthController))
+				{
+					if (!healthControllers.Contains(hitHealthController))
+					{
+						healthControllers.Add(hitHealthController);
+						hitHealthController.Damage(damageAmt);
 					}
 				}
 			}
@@ -115,6 +145,25 @@ public class Attack : MonoBehaviour
 					if (!healthControllers.Contains(hitHealthController))
 					{
 						healthControllers.Add(hitHealthController);
+						hitHealthController.Damage(damageAmt);
+					}
+				}
+			}
+		}
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		if (isAttacking)
+		{
+			if (other.gameObject.layer == layer)
+			{
+				if (other.TryGetComponent<HealthController>(out HealthController hitHealthController))
+				{
+					if (!healthControllers.Contains(hitHealthController))
+					{
+						healthControllers.Add(hitHealthController);
+						hitHealthController.Damage(damageAmt);
 					}
 				}
 			}
