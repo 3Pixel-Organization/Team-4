@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			SliceAttack();
+			//SliceAttack();
 		}
 
 		if(comboTimer <= 0)
