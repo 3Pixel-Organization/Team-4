@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.Rendering;
 
 [System.Serializable]
-public class PlayerData
+public class PlayerSaveData
 {
 	public int level;
 	public float expPoints;

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Health;
-
+using HealthV2;
 public class PlayerCombatController : MonoBehaviour
 {
 	private CharacterController characterController;
 	private PlayerController playerController;
 
-	[SerializeField] private Attack attack;
+	//[SerializeField] private Attack attack;
 	[SerializeField] private LayerMask layerMask;
 
 	[System.Serializable]
@@ -19,6 +19,21 @@ public class PlayerCombatController : MonoBehaviour
 		public float steps;
 		public float checkDistance;
 		public Vector3 offset;
+	}
+	[System.Serializable]
+	struct CombatProps
+	{
+		public float attackDuration;
+		public StageredProps stageredProps;
+
+		[System.Serializable]
+		public struct StageredProps
+		{
+			public float shieldHit;
+			public float smallHit;
+			public float mediumHit;
+			public float largeHit;
+		}
 	}
 
 	enum HitState
@@ -40,12 +55,14 @@ public class PlayerCombatController : MonoBehaviour
 	private PlayerCombatState combatState;
 
 	[SerializeField] private RayProps rayProps;
+	[SerializeField] private CombatProps combatProps;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		characterController = GetComponent<CharacterController>();
 		playerController = GetComponent<PlayerController>();
+		Player.Instance.TakeDamage += DamagedStager;
 		hitState = HitState.None;
 		combatState = PlayerCombatState.None;
 	}
@@ -94,14 +111,30 @@ public class PlayerCombatController : MonoBehaviour
 			characterController.Move(-(transform.position - enemyHitRay.collider.gameObject.transform.position) / 2f);
 			transform.LookAt(enemyHitRay.collider.gameObject.transform);
 			transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-			enemyHitRay.collider.gameObject.GetComponent<HealthController>().Damage(100000);
+			//enemyHitRay.collider.gameObject.GetComponent<HealthController>().Damage(100000);
+			IDamageable damageable = (IDamageable) enemyHitRay.collider.gameObject.GetComponent(typeof(IDamageable));
+			damageable.Damage(10000);
 			StartCoroutine(AttackDur());
 		}
 		if(hitState == HitState.Shield)
 		{
 			//Stager player
-			StartCoroutine(StagerPlayer(0.3f));
+			StartCoroutine(StagerPlayer(combatProps.stageredProps.shieldHit));
 		}
+	}
+
+	private void DamagedStager(float currentHealth, float maxHealth, float healthDelta)
+	{
+		float stagDur = 0;
+		if(healthDelta > 1)
+		{
+			stagDur = combatProps.stageredProps.smallHit;
+		}
+		else if(healthDelta > 5)
+		{
+			stagDur = combatProps.stageredProps.mediumHit;
+		}
+		StartCoroutine(StagerPlayer(stagDur));
 	}
 
 	private IEnumerator AttackDur()
@@ -109,17 +142,17 @@ public class PlayerCombatController : MonoBehaviour
 		combatState = PlayerCombatState.Attacking;
 		playerController.DeactivateMovment();
 		//attack.IsAttacking = true;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(combatProps.attackDuration);
 		//attack.IsAttacking = false;
 		playerController.ActivateMovment();
 		combatState = PlayerCombatState.None;
 	}
 
-	private IEnumerator StagerPlayer(float stagerTime)
+	private IEnumerator StagerPlayer(float time)
 	{
 		combatState = PlayerCombatState.Stagered;
 		playerController.DeactivateMovment();
-		yield return new WaitForSeconds(stagerTime);
+		yield return new WaitForSeconds(time);
 		playerController.ActivateMovment();
 		combatState = PlayerCombatState.None;
 	}

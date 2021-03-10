@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player
+public class PlayerData
 {
 	public static int level;
 	public static float expPoints;
@@ -16,7 +16,7 @@ public class Player
 	{
 		if(SaveData.Current.player == null)
 		{
-			SaveData.Current.player = new PlayerData();
+			SaveData.Current.player = new PlayerSaveData();
 		}
 		if(equippedWeapon != null)
 		{
@@ -41,7 +41,7 @@ public class Player
 
 	public static void Load()
 	{
-		SaveData.Current.player = (PlayerData)SerializationManager.Load(Application.persistentDataPath + "/saves/playerData.savedata");
+		SaveData.Current.player = (PlayerSaveData)SerializationManager.Load(Application.persistentDataPath + "/saves/playerData.savedata");
 
 		if (SaveData.Current.player != null)
 		{
@@ -63,7 +63,7 @@ public class Player
 		}
 		else
 		{
-			SaveData.Current.player = new PlayerData()
+			SaveData.Current.player = new PlayerSaveData()
 			{
 				level = 0,
 				expPoints = 0,

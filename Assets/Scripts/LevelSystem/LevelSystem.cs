@@ -40,8 +40,8 @@ namespace Levels
 		int maxLevel = 20;
 		public LevelSystem()
 		{
-			_currentExp = Player.expPoints;
-			_currentLvl = Player.level;
+			_currentExp = PlayerData.expPoints;
+			_currentLvl = PlayerData.level;
 			UpdateExpToNextLevel();
 		}
 
@@ -64,14 +64,14 @@ namespace Levels
 				_currentExp -= expToNextLvl;
 				currentLvl++;
 			}
-			Player.expPoints = currentExp;
+			PlayerData.expPoints = currentExp;
 			OnExpChange?.Invoke();
 		}
 
 		void LevelChange()
 		{
 			UpdateExpToNextLevel();
-			Player.level = currentLvl;
+			PlayerData.level = currentLvl;
 			OnLevelChange?.Invoke();
 		}
 

@@ -52,27 +52,27 @@ public class DebugController : MonoBehaviour
 
 		PLAYER_LOAD = new DebugCommand("player_load", "Loads player data", "player_load", () =>
 		{
-			Player.Load();
+			PlayerData.Load();
 		});
 
 		PLAYER_SAVE = new DebugCommand("player_save", "Saves player data", "player_save", () =>
 		{
-			Player.Save();
+			PlayerData.Save();
 		});
 
 		PLAYER_SET_LVL = new DebugCommand<int>("player_set_lvl", "Sets the playerdata level", "player_set_lvl <level>", (lvl) =>
 		{
-			Player.levelSystem.SetLvl(lvl);
+			PlayerData.levelSystem.SetLvl(lvl);
 		});
 
 		PLAYER_SET_EXP = new DebugCommand<int>("player_set_exp", "Sets the playerdata expPoints", "player_set_exp <expPoints>", (expPoints) =>
 		{
-			Player.levelSystem.SetExp(expPoints);
+			PlayerData.levelSystem.SetExp(expPoints);
 		});
 
 		PLAYER_ADD_EXP = new DebugCommand<int>("player_add_exp", "Adds to the playerdata expPoints", "player_add_exp <expPoints>", (expPoints) =>
 		{
-			Player.levelSystem.GiveExp(expPoints);
+			PlayerData.levelSystem.GiveExp(expPoints);
 		});
 
 		commandList = new List<object>

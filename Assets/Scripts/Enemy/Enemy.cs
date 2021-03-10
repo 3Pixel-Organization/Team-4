@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Health;
 using UnityEngine.VFX;
+using HealthV2;
 
-public class Enemy : MonoBehaviour
+public class Enemy : HealthSystem
 {
 	public int level;
 	public TMPro.TextMeshProUGUI levelText;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
 	{
 		healthController = GetComponent<HealthController>();
 		healthController.Death += Death;
+		InstanceHealthSystem(100);
 	}
 
 	// Update is called once per frame
@@ -27,8 +29,9 @@ public class Enemy : MonoBehaviour
 		
 	}
 
-	void Death()
+	protected override void Death()
 	{
+		base.Death();
 		//GameManager.current.EnemyDeath(transform, this);
 		
 		deathEffect.Play();

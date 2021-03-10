@@ -5,7 +5,7 @@ using Health;
 using EventSystem;
 using UnityEngine.VFX;
 
-public class Attack : MonoBehaviour
+public class DepAttack : MonoBehaviour
 {
 	private bool isAttacking = false;
 
