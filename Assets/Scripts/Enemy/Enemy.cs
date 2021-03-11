@@ -18,8 +18,8 @@ public class Enemy : HealthSystem
 	// Start is called before the first frame update
 	void Start()
 	{
-		healthController = GetComponent<HealthController>();
-		healthController.Death += Death;
+		//healthController = GetComponent<HealthController>();
+		//healthController.Death += Death;
 		InstanceHealthSystem(100);
 	}
 

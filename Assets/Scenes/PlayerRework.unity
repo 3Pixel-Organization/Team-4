@@ -836,6 +836,7 @@ MonoBehaviour:
         range: 0
       rotate:
         angle: -25
+  projectileData: {fileID: 0}
 --- !u!65 &84639812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4347,6 +4348,7 @@ MonoBehaviour:
         range: 0
       rotate:
         angle: 25
+  projectileData: {fileID: 0}
 --- !u!65 &487679583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12293,8 +12295,8 @@ GameObject:
   - component: {fileID: 1589558278}
   - component: {fileID: 1589558277}
   - component: {fileID: 1589558276}
-  - component: {fileID: 1589558280}
   - component: {fileID: 1589558281}
+  - component: {fileID: 1589558280}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Enemy
@@ -12387,19 +12389,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589558275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf09c21865a1b8c4aacb4ad90f8ed082, type: 3}
+  m_Script: {fileID: 11500000, guid: 61d125ad94340134aade4ede9d4cbe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackProps:
-    DamageAmount: 1.83
+    DamageAmount: 0
   movment:
-    movmentPatterns:
-    - pattern: 0
-      speed: 3.1
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 0
+    movmentPatterns: []
+  projectileData: {fileID: 11400000, guid: 6ef722e1f6682c54c984a8866192e577, type: 2}
 --- !u!54 &1589558281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16087,12 +16084,7 @@ MonoBehaviour:
         range: 0
       rotate:
         angle: 0
-    - pattern: 2
-      speed: 1.14
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 0
+  projectileData: {fileID: 0}
 --- !u!65 &2055411160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19339,7 +19331,7 @@ MonoBehaviour:
     m_Bits: 512
   rayProps:
     drawRays: 0
-    drawHit: 0
+    drawHit: 1
     checkAngles: {x: 84.2, y: 37.1}
     steps: 10
     checkDistance: 2.25

@@ -84,7 +84,7 @@ namespace Attacks.Movment
 			else if (sideOffset < -sideToSide.range && !moveLeft)
 			{
 				moveLeft = true;
-			}	
+			}
 		}
 
 		void Rotate(Transform transform)

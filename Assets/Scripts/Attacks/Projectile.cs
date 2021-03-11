@@ -1,31 +1,51 @@
 ﻿using UnityEngine;
 using Attacks.Movment;
 using System.Collections.Generic;
+using Attacks.HitBehaviors;
 
 namespace Attacks
 {
 	public class Projectile : Attack
 	{
-		[System.Serializable]
-		public struct MovmentProps
+		private void Start()
 		{
-			public List<MovmentPattern> movmentPatterns;
+			if (projectileData == null) return;
+			projectileData.Initiate();
 		}
 
 
-		[SerializeField] public MovmentProps movment;
+		//[SerializeField] public MovmentProps movment;
+		[SerializeField] [Expandable] private SOProjectile projectileData;
 
 		private void Update()
 		{
-			foreach (MovmentPattern item in movment.movmentPatterns)
-			{
-				item.Move(transform);
-			}
+			if (projectileData == null) return;
+
+			projectileData.movmentPattern.Move(transform);
 		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			Destroy(gameObject, 0.1f);
+			if (projectileData == null) return;
+
+			HitData hitData = new HitData()
+			{
+				damageAmount = 1,
+				self = gameObject
+			};
+			projectileData.Hit(hitData);
+		}
+
+		public override void Damage(float damage)
+		{
+			if (projectileData == null) return;
+
+			HitData hitData = new HitData()
+			{
+				damageAmount = damage,
+				self = gameObject
+			};
+			projectileData.Hit(hitData);
 		}
 	}
 }

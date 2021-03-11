@@ -12,7 +12,7 @@ public class ProjectileEditor : Editor
 		//base.OnInspectorGUI();
 		Projectile myProjectile = (Projectile)target;
 
-		myProjectile.attackProps.DamageAmount = EditorGUILayout.FloatField("Damage", myProjectile.attackProps.DamageAmount);
+		//myProjectile.attackProps.DamageAmount = EditorGUILayout.FloatField("Damage", myProjectile.attackProps.DamageAmount);
 		/*
 		if (GUILayout.Button("Add"))
 		{

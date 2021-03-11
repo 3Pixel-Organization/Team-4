@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9746d71aa5a5692459630a8f5e88589b, type: 3}
+  m_Name: Forward sin pattern
+  m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  movmentBehaviors:
+  - {fileID: 11400000, guid: e6a1a579a84bd5a4eae6c77a3fba5645, type: 2}
+  - {fileID: 11400000, guid: a7dab440f4bb4934ba269930530f0621, type: 2}
