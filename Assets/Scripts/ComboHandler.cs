@@ -29,7 +29,7 @@ public class ComboHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		Debug.Log($"Combo count: {comboCount}");
+		//Debug.Log($"Combo count: {comboCount}");
 		if(comboTimer > 0)
 		{
 			comboIsActive = true;
