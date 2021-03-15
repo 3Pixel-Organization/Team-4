@@ -9,9 +9,12 @@ namespace Attacks
 	[CreateAssetMenu(menuName = "Attacks/Attack/Projectile")]
 	public class SOProjectile : SOAttack
 	{
-
+		public CollisionType collisionType;
 		[Expandable] public SOMovmentPattern movmentPattern;
 		[Expandable] public List<SOHitBehavior> hitBehaviors;
+
+		private CollisionType oldCollisionType;
+		private SOMovmentPattern oldMovmentPattern;
 		public override void Initiate()
 		{
 			movmentPattern.Initiate();
@@ -19,6 +22,16 @@ namespace Attacks
 			{
 				item.Initiate();
 			}
+		}
+
+		public void CollisionUpdate()
+		{
+
+		}
+
+		private void OnValidate()
+		{
+			
 		}
 
 		public void Hit(HitData hitData)

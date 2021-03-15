@@ -48,4 +48,13 @@ namespace Attacks
 			projectileData.Hit(hitData);
 		}
 	}
+
+	[System.Flags]
+	public enum CollisionType
+	{
+		None = 0,
+		Collider = 1,
+		Ray = 2,
+		Physics = 4
+	}
 }

@@ -820,22 +820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d125ad94340134aade4ede9d4cbe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackProps:
-    DamageAmount: 1.86
-  movment:
-    movmentPatterns:
-    - pattern: 0
-      speed: 7.98
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 0
-    - pattern: 2
-      speed: 1.14
-      sideToSide:
-        range: 0
-      rotate:
-        angle: -25
   projectileData: {fileID: 0}
 --- !u!65 &84639812
 BoxCollider:
@@ -4332,22 +4316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d125ad94340134aade4ede9d4cbe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackProps:
-    DamageAmount: 1.86
-  movment:
-    movmentPatterns:
-    - pattern: 0
-      speed: 7.98
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 0
-    - pattern: 2
-      speed: 1.14
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 25
   projectileData: {fileID: 0}
 --- !u!65 &487679583
 BoxCollider:
@@ -12297,7 +12265,7 @@ GameObject:
   - component: {fileID: 1589558276}
   - component: {fileID: 1589558281}
   - component: {fileID: 1589558280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -12392,10 +12360,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d125ad94340134aade4ede9d4cbe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackProps:
-    DamageAmount: 0
-  movment:
-    movmentPatterns: []
   projectileData: {fileID: 11400000, guid: 6ef722e1f6682c54c984a8866192e577, type: 2}
 --- !u!54 &1589558281
 Rigidbody:
@@ -16074,16 +16038,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d125ad94340134aade4ede9d4cbe07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackProps:
-    DamageAmount: 1.86
-  movment:
-    movmentPatterns:
-    - pattern: 0
-      speed: 7.98
-      sideToSide:
-        range: 0
-      rotate:
-        angle: 0
   projectileData: {fileID: 0}
 --- !u!65 &2055411160
 BoxCollider:
@@ -25829,7 +25783,7 @@ GameObject:
   - component: {fileID: 5351421403924545948}
   m_Layer: 8
   m_Name: Ch24
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

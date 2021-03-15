@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd767a516725ed142b28fa83c2bea44c, type: 3}
   m_Name: Forward slow
   m_EditorClassIdentifier: 
-  Speed: 1
+  Speed: 2.26

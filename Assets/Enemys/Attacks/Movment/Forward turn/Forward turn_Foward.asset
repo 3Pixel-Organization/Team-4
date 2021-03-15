@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd767a516725ed142b28fa83c2bea44c, type: 3}
   m_Name: Forward turn_Foward
   m_EditorClassIdentifier: 
-  Speed: 1
+  Speed: 4

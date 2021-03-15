@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Shuriken
   m_EditorClassIdentifier: 
   DamageAmount: 5
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 256
+  damageTag: Player
+  collisionType: 0
   movmentPattern: {fileID: 11400000, guid: 018d10d56f3011a4ca2abd1663c65d97, type: 2}
   hitBehaviors:
   - {fileID: 11400000, guid: 46c5ef4ca730ac14bb034b322aad4a76, type: 2}

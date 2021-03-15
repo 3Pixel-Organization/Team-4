@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
+
+
+/// <summary>
+/// MonoBehaviour for the debug console
+/// </summary>
+/// Creator: lolman
 public class DebugController : MonoBehaviour
 {
 	bool showConsole;

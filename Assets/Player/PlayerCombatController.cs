@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Health;
 using HealthV2;
+using EventSystem;
+
+/// <summary>
+/// MonoBehaviour that takes care of the player combat
+/// </summary>
+/// <creator>lolman</creator>
 public class PlayerCombatController : MonoBehaviour
 {
 	private CharacterController characterController;
@@ -76,6 +82,9 @@ public class PlayerCombatController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// When called triggers attack
+	/// </summary>
 	public void Attack()
 	{
 		if (combatState != PlayerCombatState.None) return;
@@ -114,6 +123,7 @@ public class PlayerCombatController : MonoBehaviour
 			//enemyHitRay.collider.gameObject.GetComponent<HealthController>().Damage(100000);
 			IDamageable damageable = (IDamageable) enemyHitRay.collider.gameObject.GetComponent(typeof(IDamageable));
 			damageable.Damage(10000);
+			GameEvents.current.player.DamageEnemy();
 			StartCoroutine(AttackDur());
 		}
 		if(hitState == HitState.Shield)
@@ -123,6 +133,12 @@ public class PlayerCombatController : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// This method is subscribed to the TakeDamage event of the player health system
+	/// </summary>
+	/// <param name="currentHealth"></param>
+	/// <param name="maxHealth"></param>
+	/// <param name="healthDelta"></param>
 	private void DamagedStager(float currentHealth, float maxHealth, float healthDelta)
 	{
 		float stagDur = 0;
@@ -148,6 +164,11 @@ public class PlayerCombatController : MonoBehaviour
 		combatState = PlayerCombatState.None;
 	}
 
+	/// <summary>
+	/// Method for stagering the player for amount of time
+	/// </summary>
+	/// <param name="time">length of stager</param>
+	/// <returns>IEnumerator that does stager player</returns>
 	private IEnumerator StagerPlayer(float time)
 	{
 		combatState = PlayerCombatState.Stagered;
