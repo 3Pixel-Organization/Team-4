@@ -69,8 +69,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmt: 100
   layer: 9
-  hasTrail: 1
+  hasTrail: 0
+  hasEffect: 1
   particleSystem: {fileID: 6642931810471912206}
+  visualEffect: {fileID: 832846435589024322}
 --- !u!65 &4636116591615357647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4961,7 +4963,9 @@ MonoBehaviour:
   damageAmt: 100
   layer: 0
   hasTrail: 0
+  hasEffect: 0
   particleSystem: {fileID: 0}
+  visualEffect: {fileID: 0}
 --- !u!1 &7902628549584779625
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,8 +5007,8 @@ VisualEffect:
   m_GameObject: {fileID: 7902628549584779625}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: fdcc0e7950788304c9266d422ddf5454, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: Slice
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1

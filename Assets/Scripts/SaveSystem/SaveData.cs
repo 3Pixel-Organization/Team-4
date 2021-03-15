@@ -22,7 +22,7 @@ class SaveData
 	}
 
 	public List<ItemData> items = new List<ItemData>();
-	public PlayerData player;
+	public PlayerSaveData player;
 
 }
 

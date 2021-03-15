@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 	{
 		current = this;
 		Inventory.Load();
-		Player.Load();
+		PlayerData.Load();
 	}
 
 	// Start is called before the first frame update
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 		}
 		currentRunItems.Clear();
 		Inventory.Save();
-		Player.Save();
+		PlayerData.Save();
 		victoryTimeline.Play();
 		GameEvents.current.level.LevelEnd();
 		//SceneManager.LoadScene("Level00");
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
 	public void EnemyDeath(Transform transform, Enemy enemy)
 	{
-		Player.levelSystem.GiveExp(Exp.EnemyExp(levelData.difficultyLevel + enemy.enemyPrefab.reletiveLevel, enemy.enemyPrefab.expMultiplier));
+		PlayerData.levelSystem.GiveExp(Exp.EnemyExp(levelData.difficultyLevel + enemy.enemyPrefab.reletiveLevel, enemy.enemyPrefab.expMultiplier));
 		List<LootPrefab> prefabLoot = levelData.levelLootTable.GetLoot(enemy.enemyPrefab.enemyTier);
 		foreach (LootPrefab item in prefabLoot)
 		{
