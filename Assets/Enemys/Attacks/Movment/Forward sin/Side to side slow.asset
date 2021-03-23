@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5c5083126b137e4ea5b81b32cf5c5fc, type: 3}
   m_Name: Side to side slow
   m_EditorClassIdentifier: 
-  Speed: 4
+  Speed: 0
   range: 0.25
   invert: 0

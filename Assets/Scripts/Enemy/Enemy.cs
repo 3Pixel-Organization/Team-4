@@ -34,9 +34,9 @@ public class Enemy : HealthSystem
 		base.Death();
 		//GameManager.current.EnemyDeath(transform, this);
 		
-		deathEffect.Play();
-		audioSource.pitch = Random.Range(0.5f, 2);
-		audioSource.Play();
+		//deathEffect.Play();
+		//audioSource.pitch = Random.Range(0.5f, 2);
+		//audioSource.Play();
 		Destroy(this.gameObject);
 	}
 }

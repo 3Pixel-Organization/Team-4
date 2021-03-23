@@ -22,7 +22,7 @@ public class Player : HealthSystem
 	// Start is called before the first frame update
 	void Start()
 	{
-		
+		InstanceHealthSystem(5);
 	}
 
 	// Update is called once per frame
@@ -34,5 +34,6 @@ public class Player : HealthSystem
 	protected override void Death()
 	{
 		base.Death();
+		Debug.Log("Player died");
 	}
 }

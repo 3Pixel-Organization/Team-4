@@ -2,6 +2,7 @@
 using Attacks.Movment;
 using System.Collections.Generic;
 using Attacks.HitBehaviors;
+using HealthV2;
 
 namespace Attacks
 {
@@ -27,6 +28,7 @@ namespace Attacks
 		private void OnCollisionEnter(Collision collision)
 		{
 			if (projectileData == null) return;
+			if (!collision.gameObject.CompareTag(projectileData.damageTag)) return;
 
 			HitData hitData = new HitData()
 			{
@@ -34,6 +36,11 @@ namespace Attacks
 				self = gameObject
 			};
 			projectileData.Hit(hitData);
+			if(collision.gameObject.TryGetComponent(typeof(IDamageable), out Component component))
+			{
+				IDamageable damageable = component as IDamageable;
+				damageable.Damage(projectileData.DamageAmount);
+			}
 		}
 
 		public override void Damage(float damage)

@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (movementExact)
 		{
-			characterController.Move(new Vector3(direction.x * moveSpeed * Time.deltaTime, 0, direction.y * moveSpeed * Time.deltaTime));
+			characterController.Move(new Vector3(direction.x, 0, direction.y) * moveSpeed * Time.deltaTime);
 		}
 		//rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
 	}
@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 		characterController.Move((new Vector3(playerDirection.x, 0, playerDirection.y) * dashSettings.speed) * Time.deltaTime);
 	}
 
-	private IEnumerator DashCoolDown()
+	public IEnumerator DashCoolDown()
 	{
 		dashIsReady = false;
 		GameEvents.current.player.AbilityCooldownStart(1);
