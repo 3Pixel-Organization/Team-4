@@ -1374,6 +1374,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4309360910974684109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2061,10 +2062,13 @@ GameObject:
   - component: {fileID: 2613672264680356382}
   - component: {fileID: 4202948124890319695}
   - component: {fileID: 6531886144433570130}
-  - component: {fileID: 4376961684368958175}
+  - component: {fileID: 2489657938355588805}
+  - component: {fileID: 6518854748244400618}
+  - component: {fileID: -7672462205079481780}
+  - component: {fileID: 2357860608843033461}
   m_Layer: 9
   m_Name: Boss01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2150,7 +2154,9 @@ MonoBehaviour:
   level: 0
   levelText: {fileID: 7410107504771069217}
   enemyPrefab: {fileID: 0}
---- !u!114 &4376961684368958175
+  deathEffect: {fileID: 2879936912925386291, guid: c50557304c14f3d4fb2e6d8c4fd85316, type: 3}
+  audioSource: {fileID: 0}
+--- !u!114 &2489657938355588805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2159,13 +2165,67 @@ MonoBehaviour:
   m_GameObject: {fileID: 7080134432938829148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e9164263ff1494c997ce3827a4cda8, type: 3}
+  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealth: 100
-  MaxHealth: 100
-  DamageCooldown: 100
-  healthBar: {fileID: 2617136780933267889}
+  _data:
+    _json: '{"declarations":{"collection":{"$content":[{"name":"PlayerIsNear","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"CanSeePlayer","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"EnemyDetectRange","value":{"$content":12.5,"$type":"System.Single"},"$version":"A"},{"name":"AttackRange","value":{"$content":10.0,"$type":"System.Single"},"$version":"A"},{"name":"Projectile","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"Attacking","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 1456127098300990762, guid: c91500713ff952b4a81b1e29c006f406, type: 3}
+--- !u!114 &6518854748244400618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080134432938829148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1999370065, guid: dcd2196c4e9166f499793f2007fcda35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: c81ce239df0c2324ba697cff95c6e79e, type: 2}
+--- !u!114 &-7672462205079481780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080134432938829148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: 8cdf0c43947eb584ba71503df2139838, type: 2}
+--- !u!195 &2357860608843033461
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080134432938829148}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 4
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7153598044203843085
 GameObject:
   m_ObjectHideFlags: 0
