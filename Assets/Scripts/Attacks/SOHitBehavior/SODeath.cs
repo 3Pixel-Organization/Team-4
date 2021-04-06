@@ -9,7 +9,7 @@ namespace Attacks.HitBehaviors
 	{
 		public override void Hit(HitData hitData)
 		{
-			Destroy(hitData.self, 0.1f);
+			Destroy(hitData.self);
 		}
 	}
 }

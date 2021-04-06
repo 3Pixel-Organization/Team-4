@@ -15,7 +15,7 @@ public class Player : HealthSystem
 		}
 		else
 		{
-			Debug.LogError("Only one player allowed", this.gameObject);
+			Debug.LogError("Only one player allowed", gameObject);
 		}
 	}
 

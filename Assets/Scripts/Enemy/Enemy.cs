@@ -11,7 +11,7 @@ public class Enemy : HealthSystem
 	public TMPro.TextMeshProUGUI levelText;
 	public EnemyPrefab enemyPrefab;
 
-	public VisualEffect deathEffect;
+	public GameObject deathEffect;
 	public AudioSource audioSource;
 
 	private HealthController healthController;
@@ -33,10 +33,12 @@ public class Enemy : HealthSystem
 	{
 		base.Death();
 		//GameManager.current.EnemyDeath(transform, this);
-		
+
 		//deathEffect.Play();
 		//audioSource.pitch = Random.Range(0.5f, 2);
 		//audioSource.Play();
+		GameObject deathEff = Instantiate(deathEffect, transform.position + Vector3.up * 1.2f , transform.rotation);
+		Destroy(deathEff, 1.5f);
 		Destroy(this.gameObject);
 	}
 }
