@@ -7,6 +7,15 @@ using HealthV2;
 
 public class Enemy : HealthSystem
 {
+	public enum EnemyState
+	{
+		Normal,
+		Guard,
+		Vulnerable
+	}
+
+	public EnemyState enemyState;
+
 	public int level;
 	public TMPro.TextMeshProUGUI levelText;
 	public EnemyPrefab enemyPrefab;
@@ -28,6 +37,23 @@ public class Enemy : HealthSystem
 	{
 		
 	}
+
+	public override void Damage(float damage)
+	{
+		if(enemyState == EnemyState.Normal)
+		{
+			base.Damage(damage);
+		}
+		else if(enemyState == EnemyState.Vulnerable)
+		{
+			base.Damage(damage * 2);
+		}
+		else if(enemyState == EnemyState.Guard)
+		{
+			base.Damage(damage * 0.1f);
+		}
+	}
+	
 
 	protected override void Death()
 	{
