@@ -4,9 +4,9 @@ using UnityEngine;
 using Bolt;
 using Ludiq;
 
-[UnitTitle("Guard")]
+[UnitTitle("Vulnerable")]
 [UnitCategory("Enemy/State")]
-public class EnemyGuard : Unit
+public class EnemyVulnerable : Unit
 {
 	[DoNotSerialize]
 	public ControlInput input { get; private set; }
@@ -39,11 +39,10 @@ public class EnemyGuard : Unit
 	{
 		GameObject self = flow.GetValue<GameObject>(selfIn);
 		float time = flow.GetValue<float>(timeIn);
-		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Guard;
+		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Vulnerable;
 		yield return broken;
 		yield return new WaitForSeconds(time);
 		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Normal;
 		yield return finished;
 	}
-
 }

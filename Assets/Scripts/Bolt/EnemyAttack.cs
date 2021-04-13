@@ -32,12 +32,11 @@ public class EnemyAttack : Unit
 		broken = ControlOutput("Broken");
 		
 		selfIn = ValueInput<GameObject>("Self", null).NullMeansSelf();
-		timeIn = ValueInput<float>("Duration", 0);
+		timeIn = ValueInput<float>("Duration", 1);
 	}
 
 	public IEnumerator Enter(Flow flow)
 	{
-		Debug.Log("Coro");
 		GameObject self = flow.GetValue<GameObject>(selfIn);
 		float time = flow.GetValue<float>(timeIn);
 		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Vulnerable;

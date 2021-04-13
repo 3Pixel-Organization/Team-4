@@ -36,6 +36,7 @@ namespace HealthV2
 		public bool IsAlive => CurrentHealth > 0;
 
 		private float currentHealth;
+		private float maxHealth;
 
 		/// <summary>
 		/// Returns the current number of health this character has.
@@ -51,6 +52,10 @@ namespace HealthV2
 
 		public virtual void Damage(float damage)
 		{
+			if(damage > 0)
+			{
+				OnTakeDamage(currentHealth - damage, maxHealth, damage);
+			}
 			currentHealth -= damage;
 			if(currentHealth <= 0)
 			{
