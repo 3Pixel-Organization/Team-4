@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 using Ludiq;
+using HealthV2;
 
 [UnitTitle("Vulnerable")]
 [UnitCategory("Enemy/State")]
@@ -25,6 +26,12 @@ public class EnemyVulnerable : Unit
 	[DoNotSerialize]
 	public ValueInput timeIn { get; private set; }
 
+	public GraphReference graphReference { get; private set; }
+
+	private Enemy enemy;
+	private Animator animator;
+	private Flow currentFlow;
+
 	protected override void Definition()
 	{
 		input = ControlInputCoroutine("Start", Enter);
@@ -37,12 +44,41 @@ public class EnemyVulnerable : Unit
 
 	public IEnumerator Enter(Flow flow)
 	{
+		currentFlow = flow;
+
 		GameObject self = flow.GetValue<GameObject>(selfIn);
+
 		float time = flow.GetValue<float>(timeIn);
-		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Vulnerable;
-		yield return broken;
+
+		graphReference = flow.stack.AsReference();
+
+		enemy = self.GetComponent<Enemy>();
+		if (!enemy.IsAlive)
+		{
+			currentFlow.StopCoroutine(true);
+		}
+		animator = self.GetComponent<Animator>();
+
+		//animator.SetBool("Blocking", true);
+
+		enemy.ReponseToAttack += Attacked;
+
+		enemy.enemyState = Enemy.EnemyState.Guard;
+
 		yield return new WaitForSeconds(time);
-		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Normal;
+
+		//animator.SetBool("Blocking", false);
+		enemy.enemyState = Enemy.EnemyState.Normal;
+		enemy.ReponseToAttack -= Attacked;
 		yield return finished;
+	}
+
+	private AttackResponse Attacked(Attack attack)
+	{
+		enemy.enemyState = Enemy.EnemyState.Normal;
+		enemy.ReponseToAttack -= Attacked;
+		Flow.New(graphReference).StartCoroutine(broken);
+		currentFlow.StopCoroutine(true);
+		return new AttackResponse(attack);
 	}
 }

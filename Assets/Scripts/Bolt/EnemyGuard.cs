@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 using Ludiq;
+using HealthV2;
 
 [UnitTitle("Guard")]
 [UnitCategory("Enemy/State")]
@@ -25,6 +26,16 @@ public class EnemyGuard : Unit
 	[DoNotSerialize]
 	public ValueInput timeIn { get; private set; }
 
+	[DoNotSerialize]
+	public ValueInput breakThreshold { get; private set; }
+
+	public GraphReference graphReference { get; private set; }
+
+	private Attack breakThresholdValue;
+	private Enemy enemy;
+	private Animator animator;
+	private Flow currentFlow;
+
 	protected override void Definition()
 	{
 		input = ControlInputCoroutine("Start", Enter);
@@ -33,17 +44,71 @@ public class EnemyGuard : Unit
 
 		selfIn = ValueInput<GameObject>("Self", null).NullMeansSelf();
 		timeIn = ValueInput<float>("Duration", 1);
+		breakThreshold = ValueInput("Break threshold", new Attack(10, Attack.AttackType.Heavy));
 	}
 
 	public IEnumerator Enter(Flow flow)
 	{
+		currentFlow = flow;
+
 		GameObject self = flow.GetValue<GameObject>(selfIn);
+
 		float time = flow.GetValue<float>(timeIn);
-		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Guard;
-		yield return broken;
+
+		breakThresholdValue = flow.GetValue<Attack>(breakThreshold);
+
+		graphReference = flow.stack.AsReference();
+
+		enemy = self.GetComponent<Enemy>();
+		animator = self.GetComponent<Animator>();
+
+		if (!enemy.IsAlive)
+		{
+			currentFlow.StopCoroutine(true);
+		}
+
+		animator.SetBool("Blocking", true);
+
+		enemy.Attacked += TryBreak;
+		enemy.ReponseToAttack += TryAttack;
+
+		enemy.enemyState = Enemy.EnemyState.Guard;
+
 		yield return new WaitForSeconds(time);
-		self.GetComponent<Enemy>().enemyState = Enemy.EnemyState.Normal;
+		
+		animator.SetBool("Blocking", false);
+		enemy.enemyState = Enemy.EnemyState.Normal;
+		enemy.Attacked -= TryBreak;
+		enemy.ReponseToAttack -= TryAttack;
 		yield return finished;
+	}
+
+	private void TryBreak(Attack attack)
+	{
+		if(attack >= breakThresholdValue)
+		{
+			animator.SetBool("Blocking", false);
+			enemy.enemyState = Enemy.EnemyState.Vulnerable;
+			enemy.Attacked -= TryBreak;
+			enemy.ReponseToAttack -= TryAttack;
+			Flow.New(graphReference).StartCoroutine(broken);
+			currentFlow.StopCoroutine(true);
+		}
+	}
+
+	private AttackResponse TryAttack(Attack attack)
+	{
+		if (attack >= breakThresholdValue)
+		{
+			animator.SetBool("Blocking", false);
+			enemy.enemyState = Enemy.EnemyState.Vulnerable;
+			enemy.Attacked -= TryBreak;
+			enemy.ReponseToAttack -= TryAttack;
+			Flow.New(graphReference).StartCoroutine(broken);
+			currentFlow.StopCoroutine(true);
+			return new AttackResponse(attack);
+		}
+		return AttackResponse.Blocked;
 	}
 
 }

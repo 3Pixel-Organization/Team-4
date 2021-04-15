@@ -4,6 +4,7 @@ using UnityEngine;
 using Health;
 using UnityEngine.VFX;
 using HealthV2;
+using UnityEngine.AI;
 
 public class Enemy : HealthSystem
 {
@@ -24,34 +25,43 @@ public class Enemy : HealthSystem
 	public AudioSource audioSource;
 
 	private HealthController healthController;
+
+	private Animator animator;
+
+	private NavMeshAgent agent;
 	// Start is called before the first frame update
 	void Start()
 	{
 		//healthController = GetComponent<HealthController>();
 		//healthController.Death += Death;
-		InstanceHealthSystem(100);
+		InstanceHealthSystem(15);
+		animator = GetComponent<Animator>();
+		agent = GetComponent<NavMeshAgent>();
+		TakeDamage += TookDamage;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		
+		animator.SetFloat("MoveSpeed", agent.desiredVelocity.magnitude * 0.2f);
 	}
 
-	public override void Damage(float damage)
+	public override AttackResponse Damage(Attack attack)
 	{
-		if(enemyState == EnemyState.Normal)
+		if (!IsAlive) return new AttackResponse(0, AttackResponse.HitResult.None);
+		OnAttacked(attack);
+
+		AttackResponse attackResponse = OnReponseToAttack(attack);
+		if(attackResponse.HitType == AttackResponse.HitResult.Blocked)
 		{
-			base.Damage(damage);
+			return attackResponse;
 		}
-		else if(enemyState == EnemyState.Vulnerable)
+
+		if (attackResponse.DamageTaken > 0)
 		{
-			base.Damage(damage * 2);
+			BuiltInDamage(attackResponse.DamageTaken);
 		}
-		else if(enemyState == EnemyState.Guard)
-		{
-			base.Damage(damage * 0.1f);
-		}
+		return attackResponse;
 	}
 	
 
@@ -63,8 +73,20 @@ public class Enemy : HealthSystem
 		//deathEffect.Play();
 		//audioSource.pitch = Random.Range(0.5f, 2);
 		//audioSource.Play();
+
+		animator.SetTrigger("Death");
+
 		GameObject deathEff = Instantiate(deathEffect, transform.position + Vector3.up * 1.2f , transform.rotation);
 		Destroy(deathEff, 1.5f);
-		Destroy(this.gameObject);
+		Destroy(this.gameObject, 3);
+	}
+
+	void TookDamage(float currentHealth, float maxHealth, float healthDelta)
+	{
+		if(healthDelta > 3)
+		{
+			GameObject deathEff = Instantiate(deathEffect, transform.position + Vector3.up * 1.2f, transform.rotation);
+			Destroy(deathEff, 1.5f);
+		}
 	}
 }

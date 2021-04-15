@@ -26,9 +26,19 @@ namespace HealthV2
 		public event Delegates.HealthEvent TakeDamage;
 
 		/// <summary>
+		/// Invoked when entity gets attacked
+		/// </summary>
+		public event Delegates.AttackEvent Attacked;
+
+		/// <summary>
 		/// Called when this entity has been killed.
 		/// </summary>
 		public event Delegates.StateEvent Died;
+
+		/// <summary>
+		/// Called when this entity has been killed.
+		/// </summary>
+		public event Delegates.AttackResponseEvent ReponseToAttack;
 
 		/// <summary>
 		/// Determines whether this entity is alive or not.
@@ -43,22 +53,43 @@ namespace HealthV2
 		/// </summary>
 		public float CurrentHealth { get => currentHealth; }
 
-		
+		private bool dead = false;
 
 		public void InstanceHealthSystem(float currentHealth)
 		{
 			this.currentHealth = currentHealth;
 		}
 
-		public virtual void Damage(float damage)
+		public virtual AttackResponse Damage(Attack attack)
 		{
-			if(damage > 0)
+			if(attack.Damage > 0)
+			{
+				OnTakeDamage(currentHealth - attack.Damage, maxHealth, attack.Damage);
+			}
+			currentHealth -= attack.Damage;
+			if(currentHealth <= 0 && !dead)
+			{
+				dead = true;
+				Death();
+			}
+			return new AttackResponse(attack);
+		}
+
+		protected void BuiltInDamage(Attack attack)
+		{
+			BuiltInDamage(attack.Damage);
+		}
+
+		protected void BuiltInDamage(float damage)
+		{
+			if (damage > 0 && IsAlive)
 			{
 				OnTakeDamage(currentHealth - damage, maxHealth, damage);
 			}
 			currentHealth -= damage;
-			if(currentHealth <= 0)
+			if (currentHealth <= 0 && !dead)
 			{
+				dead = true;
 				Death();
 			}
 		}
@@ -81,6 +112,16 @@ namespace HealthV2
 		protected virtual void OnTakeDamage(float currentHealth, float maxHealth, float healthDelta)
 		{
 			TakeDamage?.Invoke(currentHealth, maxHealth, healthDelta);
+		}
+
+		protected virtual void OnAttacked(Attack attack)
+		{
+			Attacked?.Invoke(attack);
+		}
+
+		protected virtual AttackResponse OnReponseToAttack(Attack attack)
+		{
+			return ReponseToAttack?.Invoke(attack);
 		}
 	}
 }
