@@ -45,6 +45,12 @@ public class EnemyGuard : Unit
 		selfIn = ValueInput<GameObject>("Self", null).NullMeansSelf();
 		timeIn = ValueInput<float>("Duration", 1);
 		breakThreshold = ValueInput("Break threshold", new Attack(10, Attack.AttackType.Heavy));
+
+		Succession(input, finished);
+		Succession(input, broken);
+
+		Requirement(timeIn, input);
+		Requirement(breakThreshold, input);
 	}
 
 	public IEnumerator Enter(Flow flow)

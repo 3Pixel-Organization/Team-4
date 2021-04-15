@@ -40,6 +40,11 @@ public class EnemyVulnerable : Unit
 
 		selfIn = ValueInput<GameObject>("Self", null).NullMeansSelf();
 		timeIn = ValueInput<float>("Duration", 1);
+
+		Succession(input, finished);
+		Succession(input, broken);
+
+		Requirement(timeIn, input);
 	}
 
 	public IEnumerator Enter(Flow flow)
