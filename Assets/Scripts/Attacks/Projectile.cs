@@ -39,20 +39,22 @@ namespace Attacks
 			if(collision.gameObject.TryGetComponent(typeof(IDamageable), out Component component))
 			{
 				IDamageable damageable = component as IDamageable;
-				damageable.Damage(projectileData.DamageAmount);
+				damageable.Damage(new HealthV2.Attack(projectileData.DamageAmount));
 			}
 		}
 
-		public override void Damage(float damage)
+		public override AttackResponse Damage(HealthV2.Attack attack)
 		{
-			if (projectileData == null) return;
+			if (projectileData == null) return new AttackResponse(0,AttackResponse.HitResult.None);
 
 			HitData hitData = new HitData()
 			{
-				damageAmount = damage,
+				damageAmount = attack.Damage,
+				attack = attack,
 				self = gameObject
 			};
 			projectileData.Hit(hitData);
+			return new AttackResponse(attack);
 		}
 	}
 

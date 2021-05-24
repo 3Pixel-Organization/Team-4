@@ -22,10 +22,10 @@ public class EnemySpawner : MonoBehaviour
 			int finalLevel = GameManager.current.levelData.difficultyLevel + enemyPrefab.reletiveLevel;
 			GameObject enemyObj = Instantiate(enemyPrefab.prefab, transform.position, transform.rotation);
 			//enemyObj.GetComponent<Transform>().position = transform.position;
-			Enemy enemyScript = enemyObj.GetComponent<Enemy>();
-			enemyScript.level = finalLevel;
-			enemyScript.levelText.SetText("lvl - " + finalLevel);
-			enemyScript.enemyPrefab = enemyPrefab;
+			//Enemy enemyScript = enemyObj.GetComponent<Enemy>();
+			//enemyScript.level = finalLevel;
+			//enemyScript.levelText.SetText("lvl - " + finalLevel);
+			//enemyScript.enemyPrefab = enemyPrefab;
 			//HealthController healthController = enemyObj.GetComponent<HealthController>();
 			//healthController.MaxHealth = Mathf.RoundToInt(enemyPrefab.healthMultiplier * (enemyPrefab.reletiveLevel + GameManager.current.levelData.difficultyLevel));
 			//healthController.GiveHealth(10000);

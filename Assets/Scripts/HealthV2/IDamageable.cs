@@ -8,6 +8,6 @@ namespace HealthV2
 {
 	interface IDamageable
 	{
-		void Damage(float damage);
+		AttackResponse Damage(Attack attack);
 	}
 }

@@ -2064,8 +2064,8 @@ GameObject:
   - component: {fileID: 6531886144433570130}
   - component: {fileID: 2489657938355588805}
   - component: {fileID: 6518854748244400618}
-  - component: {fileID: -7672462205079481780}
   - component: {fileID: 2357860608843033461}
+  - component: {fileID: -72042371846601624}
   m_Layer: 9
   m_Name: Boss01
   m_TagString: Enemy
@@ -2151,6 +2151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798111ce735bc0343a7fb355aee1ddf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   level: 0
   levelText: {fileID: 7410107504771069217}
   enemyPrefab: {fileID: 0}
@@ -2188,22 +2189,6 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: c81ce239df0c2324ba697cff95c6e79e, type: 2}
---- !u!114 &-7672462205079481780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080134432938829148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 8cdf0c43947eb584ba71503df2139838, type: 2}
 --- !u!195 &2357860608843033461
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2226,6 +2211,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-72042371846601624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080134432938829148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: a908a60ba28430f4089b02be947a4823, type: 2}
 --- !u!1 &7153598044203843085
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ namespace Attacks.HitBehaviors
 	public class HitData
 	{
 		public float damageAmount;
+		public HealthV2.Attack attack;
 		public GameObject self;
 	}
 }

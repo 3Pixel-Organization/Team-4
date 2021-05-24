@@ -15,9 +15,9 @@ namespace Attacks
 
 		//[SerializeField] public AttackProps attackProps;
 
-		public virtual void Damage(float damage)
+		public virtual AttackResponse Damage(HealthV2.Attack attack)
 		{
-			
+			return new AttackResponse(attack);
 		}
 	}
 }

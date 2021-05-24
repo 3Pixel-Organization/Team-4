@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Health;
 using HealthV2;
 using EventSystem;
 
@@ -78,14 +77,14 @@ public class PlayerCombatController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			Attack();
+			StartAttack();
 		}
 	}
 
 	/// <summary>
 	/// When called triggers attack
 	/// </summary>
-	public void Attack()
+	public void StartAttack()
 	{
 		if (combatState != PlayerCombatState.None) return;
 
@@ -117,14 +116,26 @@ public class PlayerCombatController : MonoBehaviour
 		if((hitState & HitState.Enemy) == HitState.Enemy)
 		{
 			//Hit enemy
-			characterController.Move(-(transform.position - enemyHitRay.collider.gameObject.transform.position) / 2f);
+			if(((transform.position - enemyHitRay.collider.gameObject.transform.position) / 2f).magnitude > 1)
+			{
+				characterController.Move(-(transform.position - enemyHitRay.collider.gameObject.transform.position) / 2f);
+			}
+			
 			transform.LookAt(enemyHitRay.collider.gameObject.transform);
 			transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 			//enemyHitRay.collider.gameObject.GetComponent<HealthController>().Damage(100000);
 			IDamageable damageable = (IDamageable) enemyHitRay.collider.gameObject.GetComponent(typeof(IDamageable));
-			damageable.Damage(10000);
-			GameEvents.current.player.DamageEnemy();
-			StartCoroutine(AttackDur());
+			AttackResponse attackResponse = damageable.Damage(new Attack(15, Attack.AttackType.Heavy));
+			GameEvents.current.combat.AttackEvent(enemyHitRay.collider.gameObject, gameObject, new Attack(15, Attack.AttackType.Heavy), attackResponse);
+			if(attackResponse.HitType == AttackResponse.HitResult.Blocked)
+			{
+				StartCoroutine(StagerPlayer(combatProps.stageredProps.shieldHit));
+			}
+			else
+			{
+				GameEvents.current.player.DamageEnemy();
+				StartCoroutine(AttackDur());
+			}
 		}
 		if(hitState == HitState.Shield)
 		{

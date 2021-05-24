@@ -84,6 +84,9 @@ namespace Ludiq.Generated.Aot
 	// Bolt.StateMacro.op_Equality
 	// Bolt.StateMacro.op_Implicit
 	// Bolt.StateMacro.op_Inequality
+	// BoltAttackCreator.op_Equality
+	// BoltAttackCreator.op_Implicit
+	// BoltAttackCreator.op_Inequality
 	// BrickAsset.op_Equality
 	// BrickAsset.op_Implicit
 	// BrickAsset.op_Inequality
@@ -642,6 +645,7 @@ namespace Ludiq.Generated.Aot
 	// UnityEngine.PhysicMaterial.op_Equality
 	// UnityEngine.PhysicMaterial.op_Implicit
 	// UnityEngine.PhysicMaterial.op_Inequality
+	// UnityEngine.Physics.Raycast
 	// UnityEngine.Physics.Raycast
 	// UnityEngine.PhysicsMaterial2D.op_Equality
 	// UnityEngine.PhysicsMaterial2D.op_Implicit
@@ -1794,6 +1798,41 @@ namespace Ludiq.Generated.Aot
 		// Bolt.StateMacro.op_Inequality
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void Bolt_StateMacro_op_Inequality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 != arg1);
+			global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// BoltAttackCreator.op_Equality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void BoltAttackCreator_op_Equality()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
+			bool @operator = (arg0 == arg1);
+			global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool> optimized = new global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0, arg1);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// BoltAttackCreator.op_Implicit
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void BoltAttackCreator_op_Implicit()
+		{
+			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
+			bool conversion = ((bool)(arg0));
+			global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, bool> optimized = new global::Ludiq.StaticFunctionInvoker<UnityEngine.Object, bool>(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(null, arg0);
+			optimized.Invoke(default(object[]));
+		}
+		
+		// BoltAttackCreator.op_Inequality
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void BoltAttackCreator_op_Inequality()
 		{
 			global::UnityEngine.Object arg0 = default(global::UnityEngine.Object);
 			global::UnityEngine.Object arg1 = default(global::UnityEngine.Object);
@@ -8311,6 +8350,20 @@ namespace Ludiq.Generated.Aot
 		// UnityEngine.Physics.Raycast
 		[global::UnityEngine.Scripting.PreserveAttribute()]
 		public static void UnityEngine_Physics_Raycast()
+		{
+			global::UnityEngine.Vector3 arg0 = default(global::UnityEngine.Vector3);
+			global::UnityEngine.Vector3 arg1 = default(global::UnityEngine.Vector3);
+			global::UnityEngine.RaycastHit arg2 = default(global::UnityEngine.RaycastHit);
+			float arg3 = default(float);
+			int arg4 = default(int);
+			global::UnityEngine.Physics.Raycast(arg0, arg1, out arg2, arg3, arg4);
+			global::Ludiq.ReflectionInvoker optimized = new global::Ludiq.ReflectionInvoker(default(global::System.Reflection.MethodInfo));
+			optimized.Invoke(default(object[]));
+		}
+		
+		// UnityEngine.Physics.Raycast
+		[global::UnityEngine.Scripting.PreserveAttribute()]
+		public static void UnityEngine_Physics_Raycast_0()
 		{
 			global::UnityEngine.Vector3 arg0 = default(global::UnityEngine.Vector3);
 			global::UnityEngine.Vector3 arg1 = default(global::UnityEngine.Vector3);

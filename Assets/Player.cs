@@ -31,6 +31,11 @@ public class Player : HealthSystem
 		
 	}
 
+	public void Warn(AttackWarning attackWarning)
+	{
+
+	}
+
 	protected override void Death()
 	{
 		base.Death();

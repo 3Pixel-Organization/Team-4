@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 4951108370238397300}
   - component: {fileID: 6420625541584645688}
   - component: {fileID: 7109755351331140156}
+  - component: {fileID: 1727360315338898412}
   m_Layer: 9
   m_Name: Basic Motions Dummy
   m_TagString: Enemy
@@ -629,6 +630,25 @@ CapsuleCollider:
   m_Height: 2.59
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!95 &1727360315338898412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951108370238162580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 45d480461bbdc704587e117329ce8e69, type: 3}
+  m_Controller: {fileID: 9100000, guid: 510472d5717218e41b5f1fffd8acb816, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4951108370238162582
 GameObject:
   m_ObjectHideFlags: 0
