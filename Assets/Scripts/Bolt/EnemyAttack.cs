@@ -66,13 +66,14 @@ public class EnemyAttack : Unit
 		{
 			currentFlow.StopCoroutine(true);
 		}
-
-		animator.SetBool("Attacking", true);
-
 		enemy.ReponseToAttack += TryCounter;
 
+
+		//Attack start
+		animator.SetBool("Attacking", true);
 		enemy.enemyState = Enemy.EnemyState.Vulnerable;
 		vulnerable = true;
+		Player.Instance.Warn(new AttackWarning(self, AttackWarning.WarningType.StartAttack));
 
 		yield return new WaitForSeconds(time);
 

@@ -14,6 +14,7 @@ namespace EventSystem
 		public SpawnEvents spawn;
 		public LevelEvents level;
 		public EnemyEvents enemy;
+		public CombatEvents combat;
 		private void Awake()
 		{
 			current = this;
@@ -22,6 +23,7 @@ namespace EventSystem
 			spawn = new SpawnEvents();
 			level = new LevelEvents();
 			enemy = new EnemyEvents();
+			combat = new CombatEvents();
 		}
 	}
 }

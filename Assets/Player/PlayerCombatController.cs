@@ -77,14 +77,14 @@ public class PlayerCombatController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.E))
 		{
-			Attack();
+			StartAttack();
 		}
 	}
 
 	/// <summary>
 	/// When called triggers attack
 	/// </summary>
-	public void Attack()
+	public void StartAttack()
 	{
 		if (combatState != PlayerCombatState.None) return;
 
@@ -125,7 +125,8 @@ public class PlayerCombatController : MonoBehaviour
 			transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 			//enemyHitRay.collider.gameObject.GetComponent<HealthController>().Damage(100000);
 			IDamageable damageable = (IDamageable) enemyHitRay.collider.gameObject.GetComponent(typeof(IDamageable));
-			AttackResponse attackResponse = damageable.Damage(new Attack(15, HealthV2.Attack.AttackType.Heavy));
+			AttackResponse attackResponse = damageable.Damage(new Attack(15, Attack.AttackType.Heavy));
+			GameEvents.current.combat.AttackEvent(enemyHitRay.collider.gameObject, gameObject, new Attack(15, Attack.AttackType.Heavy), attackResponse);
 			if(attackResponse.HitType == AttackResponse.HitResult.Blocked)
 			{
 				StartCoroutine(StagerPlayer(combatProps.stageredProps.shieldHit));

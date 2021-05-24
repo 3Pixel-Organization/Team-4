@@ -36,7 +36,8 @@ namespace HealthV2
 			BrokeGuard,
 			Death,
 			InstaDeath,
-			Blocked
+			Blocked,
+			Counterd //The object attacking counterd the object being attacked
 		}
 
 		public static AttackResponse Blocked { get => new AttackResponse(0, HitResult.Blocked); }

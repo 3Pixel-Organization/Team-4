@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace HealthV2
 {
@@ -10,6 +11,8 @@ namespace HealthV2
 	{
 		public float Damage { get; private set; }
 		public AttackType Type { get; private set; }
+
+		public GameObject Self { get; private set; }
 
 		public Attack(float damage)
 		{
@@ -26,6 +29,7 @@ namespace HealthV2
 			{
 				Type = AttackType.Light;
 			}
+			Self = null;
 		}
 
 		public Attack(AttackType type)
@@ -37,12 +41,21 @@ namespace HealthV2
 				AttackType.Heavy => 10,
 				_ => 0,
 			};
+			Self = null;
 		}
 
 		public Attack(float damage, AttackType type)
 		{
 			Damage = damage;
 			Type = type;
+			Self = null;
+		}
+
+		public Attack(float damage, AttackType type, GameObject self)
+		{
+			Damage = damage;
+			Type = type;
+			Self = self;
 		}
 
 		public Attack Scale(float scale)
