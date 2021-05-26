@@ -9,6 +9,17 @@ public class EnemySpawnTrigger : MonoBehaviour
 
 	private bool triggerd = false;
 
+	private void Start()
+	{
+		GameEvents.current.level.OnSoftLevelReset += SoftReset;
+	}
+
+	void SoftReset()
+	{
+		triggerd = false;
+	}
+
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player") && !triggerd)

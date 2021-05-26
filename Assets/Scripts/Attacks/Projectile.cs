@@ -12,6 +12,7 @@ namespace Attacks
 		{
 			if (projectileData == null) return;
 			projectileData.Initiate();
+			GameManager.current.toDestroyOnReset.Add(gameObject);
 		}
 
 

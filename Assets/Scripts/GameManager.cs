@@ -15,7 +15,10 @@ public class GameManager : MonoBehaviour
 	public List<Item> currentRunItems = new List<Item>();
 	public SceneData levelData;
 
+	public List<GameObject> toDestroyOnReset = new List<GameObject>();
+
 	[SerializeField] private PlayableDirector victoryTimeline;
+	[SerializeField] private Transform lastResetPoint;
 
 	private void Awake()
 	{
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
 			//SpawnLoot(new Vector3(-13, 1, -3), item);
 		}
 		GameEvents.current.level.LevelStart();
+		GameEvents.current.level.OnSoftLevelReset += SoftReset;
 	}
 
 	// Update is called once per frame
@@ -62,6 +66,22 @@ public class GameManager : MonoBehaviour
 		victoryTimeline.Play();
 		GameEvents.current.level.LevelEnd();
 		//SceneManager.LoadScene("Level00");
+	}
+
+	public void PlayerDeath()
+	{
+		GameEvents.current.level.SoftLevelReset();
+	}
+
+	public void SoftReset()
+	{
+		Debug.Log("Soft Reset");
+		Player.Instance.GetComponent<PlayerController>().MoveTo(lastResetPoint.position);
+		while (toDestroyOnReset.Count > 0)
+		{
+			Destroy(toDestroyOnReset[0]);
+			toDestroyOnReset.RemoveAt(0);
+		}
 	}
 
 	public void Loose()

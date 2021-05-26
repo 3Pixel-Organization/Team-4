@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using EventSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,7 +41,19 @@ public class PlayerController : MonoBehaviour
 	private Vector3 dashStartPos, dashEndPos;
 	private float dashTimer;
 
+	private float timeSlowAmount = 1.4f;
+	private bool timeSlowIsActive = false, canSlowDown = true;
+
+	private bool isSprinting = false;
+
 	private CharacterController characterController;
+
+	private Outline outline;
+
+	[SerializeField] private ProgressBar progressBar;
+
+	[SerializeField] private VolumeFade toSlowmo;
+	[SerializeField] private VolumeFade fromSlowmo;
 
 	// Start is called before the first frame update
 	void Start()
@@ -49,6 +62,7 @@ public class PlayerController : MonoBehaviour
 		characterController = GetComponent<CharacterController>();
 		animator.SetBool("Grounded", true);
 		animator.applyRootMotion = true;
+		outline = GetComponent<Outline>();
 	}
 
 	// Update is called once per frame
@@ -58,9 +72,19 @@ public class PlayerController : MonoBehaviour
 		animator.SetFloat("StateTime", Mathf.Repeat(animator.GetCurrentAnimatorStateInfo(1).normalizedTime, 1f));
 		inAttack = animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack");
 
+		Vector2 unRotatedDir = new Vector2(joystick.Horizontal, joystick.Vertical);
+		if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+		{
+			unRotatedDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+			unRotatedDir.Normalize();
+		}
+		direction = Quaternion.Euler(new Vector3(0, 0, 45)) * unRotatedDir;
+
 		//direction = new Vector2(-Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical") + Input.GetAxisRaw("Horizontal"));
-		direction = new Vector2(-joystick.Vertical + joystick.Horizontal, joystick.Vertical + joystick.Horizontal);
+		//direction = new Vector2(-joystick.Vertical + joystick.Horizontal, joystick.Vertical + joystick.Horizontal);
+
 		
+		//Debug.Log(direction.magnitude);
 		if (direction.magnitude != 0)//if the user is giving direction input
 		{
 			playerDirection = direction.normalized;
@@ -95,6 +119,19 @@ public class PlayerController : MonoBehaviour
 		{
 			DashUpdate();
 		}
+
+		if (Input.GetKeyDown(KeyCode.C))
+		{
+			TimeSlowPress();
+		}
+
+		if (Input.GetKeyUp(KeyCode.C))
+		{
+			TimeSlowRelease();
+		}
+
+		isSprinting = Input.GetKey(KeyCode.LeftShift);
+		progressBar.current = Mathf.CeilToInt(timeSlowAmount * 100);
 	}
 
 	private void OnMove(InputValue inputValue)
@@ -106,7 +143,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (movementExact)
 		{
-			characterController.Move(new Vector3(direction.x, 0, direction.y) * moveSpeed * Time.deltaTime);
+			float speedMultiplier = 1;
+			if (isSprinting)
+			{
+				speedMultiplier = 2f;
+			}
+			characterController.Move(new Vector3(direction.x, 0, direction.y) * moveSpeed * Time.deltaTime * speedMultiplier);
 		}
 		//rb.velocity = new Vector3(direction.x * moveSpeed, rb.velocity.y, direction.y * moveSpeed);
 	}
@@ -118,6 +160,68 @@ public class PlayerController : MonoBehaviour
 			StartDash();
 		}
 	}
+	public void TimeSlowPress()
+	{
+		if (!canSlowDown) return;
+		StartTimeSlow();
+		StartCoroutine(TimeSlowTimer());
+	}
+
+	public void TimeSlowRelease()
+	{
+		if (timeSlowIsActive)
+		{
+			StopCoroutine(TimeSlowTimer());
+			StopTimeSlow();
+			StartDash();
+			timeSlowAmount = 0;
+		}
+	}
+
+	void StartTimeSlow()
+	{
+		timeSlowIsActive = true;
+		movmentIsActive = false;
+		Time.timeScale = 0.1f;
+		outline.enabled = true;
+		toSlowmo.DoEffect();
+	}
+
+	void StopTimeSlow()
+	{
+		timeSlowIsActive = false;
+		movmentIsActive = true;
+		Time.timeScale = 1f;
+		outline.enabled = false;
+		fromSlowmo.DoEffect();
+		StartCoroutine(nameof(TimeSlowCooldown));
+	}
+
+	IEnumerator TimeSlowTimer()
+	{
+		while (timeSlowAmount > 0)
+		{
+			timeSlowAmount -= Time.deltaTime/0.1f;
+			yield return new WaitForEndOfFrame();
+		}
+		StopTimeSlow();
+	}
+
+	IEnumerator TimeSlowCooldown()
+	{
+		canSlowDown = false;
+		yield return new WaitForSecondsRealtime(0.5f);
+		canSlowDown = true;
+		timeSlowAmount = 1.4f;
+	}
+
+	public void SkipTimeSlowCool()
+	{
+		StopCoroutine(TimeSlowCooldown());
+		canSlowDown = true;
+		timeSlowAmount = 1.4f;
+	}
+
 
 	void StartDash()
 	{
@@ -139,6 +243,13 @@ public class PlayerController : MonoBehaviour
 		
 		//This dash code is temporary
 		characterController.Move((new Vector3(playerDirection.x, 0, playerDirection.y) * dashSettings.speed) * Time.deltaTime);
+	}
+
+	public void MoveTo(Vector3 position)
+	{
+		characterController.enabled = false;
+		transform.position = position;
+		characterController.enabled = true;
 	}
 
 	public IEnumerator DashCoolDown()

@@ -61,6 +61,39 @@ public class PlayerCombatController : MonoBehaviour
 
 	[SerializeField] private RayProps rayProps;
 	[SerializeField] private CombatProps combatProps;
+	[SerializeField] private VolumeFade deathEffect;
+
+	private bool canAttack = false;
+	private GameObject target;
+	private GameObject Target
+	{
+		get
+		{
+			return target;
+		}
+		set
+		{
+			if(target != null)
+			{
+				if(target != value && value != null)
+				{
+					if (target.TryGetComponent(out Outline outlineOld))
+					{
+						outlineOld.enabled = false;
+					}
+				}
+			}
+			
+			if(target != value && value != null)
+			{
+				if (value.TryGetComponent(out Outline outlineNew))
+				{
+					outlineNew.enabled = true;
+				}
+			}
+			target = value;
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -79,6 +112,30 @@ public class PlayerCombatController : MonoBehaviour
 		{
 			StartAttack();
 		}
+
+		canAttack = false;
+		if (Physics.CheckSphere(transform.position, 4, layerMask))
+		{
+			Collider[] colliders = Physics.OverlapSphere(transform.position, 4, layerMask);
+			foreach (Collider item in colliders)
+			{
+				if(item.TryGetComponent(typeof(IDamageable), out Component component))
+				{
+					canAttack = true;
+					Target = item.gameObject;
+					break;
+				}
+			}
+			if(colliders.Length == 0 && Target != null)
+			{
+				Target = null;
+			}
+		}
+
+		if (!canAttack && Target != null)
+		{
+			Target = null;
+		}
 	}
 
 	/// <summary>
@@ -86,9 +143,22 @@ public class PlayerCombatController : MonoBehaviour
 	/// </summary>
 	public void StartAttack()
 	{
-		if (combatState != PlayerCombatState.None) return;
+		//if (combatState != PlayerCombatState.None) return;
 
+		if (canAttack)
+		{
+			Player.Instance.GetComponent<PlayerController>().MoveTo(target.transform.position);
+			Player.Instance.GetComponent<PlayerController>().SkipTimeSlowCool();
+			if (target.TryGetComponent(typeof(IDamageable), out Component component))
+			{
+				IDamageable enemyIScript = (IDamageable)component;
+				enemyIScript.Damage(new Attack(100));
+				deathEffect.DoEffect();
+			}
+			canAttack = false;
+		}
 
+		return;
 		hitState = HitState.None;
 		//layerMask = LayerMask.GetMask("Enemy");
 		RaycastHit hitInfo = new RaycastHit();

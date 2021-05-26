@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
 
 	private void PlaySound()
 	{
-		slashSound.Play();
+		
 	}
 
 	private void StartAttack()
@@ -74,6 +74,8 @@ public class PlayerManager : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		// Old loot code
+		/*
 		if (other.CompareTag("Loot"))
 		{
 			LootDrop lootDrop = other.GetComponent<LootDrop>();
@@ -82,5 +84,6 @@ public class PlayerManager : MonoBehaviour
 			other.gameObject.SetActive(false);
 			Destroy(other.gameObject, 0.01f);
 		}
+		*/
 	}
 }

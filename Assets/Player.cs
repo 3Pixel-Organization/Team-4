@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HealthV2;
+using EventSystem;
 
 public class Player : HealthSystem
 {
@@ -23,12 +24,18 @@ public class Player : HealthSystem
 	void Start()
 	{
 		InstanceHealthSystem(5);
+		GameEvents.current.level.OnSoftLevelReset += SoftReset;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		
+	}
+
+	void SoftReset()
+	{
+		InstanceHealthSystem(5);
 	}
 
 	public void Warn(AttackWarning attackWarning)
@@ -39,6 +46,6 @@ public class Player : HealthSystem
 	protected override void Death()
 	{
 		base.Death();
-		Debug.Log("Player died");
+		GameEvents.current.level.SoftLevelReset();
 	}
 }

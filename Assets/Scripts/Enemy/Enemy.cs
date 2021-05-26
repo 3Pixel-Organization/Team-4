@@ -52,6 +52,10 @@ public class Enemy : HealthSystem
 		OnAttacked(attack);
 
 		AttackResponse attackResponse = OnReponseToAttack(attack);
+		if(attackResponse == null)
+		{
+			attackResponse = new AttackResponse(attack);
+		}
 		if(attackResponse.HitType == AttackResponse.HitResult.Blocked)
 		{
 			return attackResponse;

@@ -58,6 +58,7 @@ namespace HealthV2
 		public void InstanceHealthSystem(float currentHealth)
 		{
 			this.currentHealth = currentHealth;
+			dead = false;
 		}
 
 		public virtual AttackResponse Damage(Attack attack)

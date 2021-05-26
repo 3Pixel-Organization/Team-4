@@ -18,5 +18,11 @@ namespace EventSystem
 		{
 			OnLevelEnd?.Invoke();
 		}
+
+		public event Action OnSoftLevelReset;
+		public void SoftLevelReset()
+		{
+			OnSoftLevelReset?.Invoke();
+		}
 	}
 }
