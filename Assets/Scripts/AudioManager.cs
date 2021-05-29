@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
 	private void OnAttack(GameObject target, GameObject source, Attack attack, AttackResponse attackResponse)
 	{
-		if(attackResponse.HitType == AttackResponse.HitResult.Light)
+		if(attackResponse.HitType == AttackResponse.HitResult.Heavy)
 		{
 			PlaySound("light_hit");
 		}
