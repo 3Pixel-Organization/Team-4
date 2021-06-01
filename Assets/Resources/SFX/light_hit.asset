@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: light_hit
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: d8b77199a3b36c740971de6781ed9e5a, type: 3}
-  volSlide: 1
+  volSlide: 0.395

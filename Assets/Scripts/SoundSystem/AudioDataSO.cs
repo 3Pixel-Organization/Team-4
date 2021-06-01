@@ -20,6 +20,7 @@ public class AudioDataSO : ScriptableObject
 		{
 			audioSource.Stop();
 			audioSource.volume = volSlide;
+			Debug.Log("audiosource volume" + audioSource.volume);
 			audioSource.Play();
 			return;
 		}
@@ -27,7 +28,7 @@ public class AudioDataSO : ScriptableObject
 		gameObject = Instantiate(new GameObject());
 		audioSource = (AudioSource)gameObject.AddComponent(typeof(AudioSource));
 		audioSource.clip = audioClip;
-
+		audioSource.volume = volSlide;
 		audioSource.Play();
 	}
 
