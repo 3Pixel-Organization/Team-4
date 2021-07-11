@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayerRework.unity
     guid: df866d76d31dba0468a3e14a8d9341cf
+  - enabled: 0
+    path: Assets/Scenes/Docks.unity
+    guid: 7ad7c130dbd36ec40864aececb467388
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 70140588b5404c946a6e2764ddc2accf, type: 2}

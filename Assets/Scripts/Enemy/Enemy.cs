@@ -93,4 +93,37 @@ public class Enemy : HealthSystem
 			Destroy(deathEff, 1.5f);
 		}
 	}
+
+	[Range(0, 10)]
+	[SerializeField] private float cooldown;
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			StartCoroutine(ShootCorutine(cooldown));
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player"))
+		{
+			StopCoroutine(ShootCorutine(cooldown));
+		}
+	}
+
+	IEnumerator ShootCorutine(float cooldown)
+	{
+		while (true)
+		{
+			Shoot();
+			yield return new WaitForSeconds(cooldown);
+		}
+	}
+
+	void Shoot()
+	{
+
+	}
 }

@@ -25,12 +25,13 @@ public class FaceThePlayer : Unit
 		selfTransformIn = ValueInput<Transform>("Self");
 
 		Requirement(selfTransformIn, input);
+		Succession(input, output);
 	}
 	
 	public ControlOutput Enter(Flow flow)
 	{
 		Transform selfTransform = flow.GetValue<Transform>(selfTransformIn);
-
+		
 		Quaternion quaternion = Quaternion.LookRotation(Player.Instance.transform.position - selfTransform.position);
 		quaternion.x = selfTransform.rotation.x;
 		quaternion.z = selfTransform.rotation.z;

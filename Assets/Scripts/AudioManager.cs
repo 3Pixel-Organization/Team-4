@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 	{
 		GameEvents.current.combat.OnAttack += OnAttack;
 	}
-
+	
 	// Update is called once per frame
 	void Update()
 	{
