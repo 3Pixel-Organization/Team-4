@@ -44,7 +44,7 @@ public class VolumeFade : MonoBehaviour
 			if (mirror1)
 			{
 				volume1.weight = curve1.Evaluate(timer);
-				volume2.weight = 1- curve1.Evaluate(timer);
+				volume2.weight = 1 - curve1.Evaluate(timer);
 			}
 			else
 			{
