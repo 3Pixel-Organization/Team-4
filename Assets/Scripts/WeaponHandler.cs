@@ -14,7 +14,7 @@ public class WeaponHandler : MonoBehaviour
 	{
 		this.weapon = weapon;
 		GameObject weaponObj = Instantiate(weapon.model, transform);
-		attack = weaponObj.GetComponentInChildren<DepAttack>();
+		//attack = weaponObj.GetComponentInChildren<DepAttack>();
 		//damage = weaponObj.GetComponentInChildren<Damage>();
 		//damage.enabled = false;
 	}

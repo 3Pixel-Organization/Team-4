@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b719c665219197a40889442ab8348833, type: 3}
+  m_Name: Level01
+  m_EditorClassIdentifier: 
+  includeSystemScenes: 1
+  includeUIScenes: 1
+  loadBehaviors:
+    loadAdditive: 0
+    keepSystemScenes: 0
+    reloadDuplicates: 0
+    ignoreDuplicates: 1
+  toLoad:
+  - {fileID: 11400000, guid: 0a3458a37571f3948a51cccfb5122a58, type: 2}
+  hasLoadingScreen: 0
+  loadingScreen: {fileID: 0}
+  loadingScreenStartStopDelay: 0.2

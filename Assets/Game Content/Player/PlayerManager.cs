@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
 	void Start()
 	{
 		currentWeapon = ItemManager.CreateWeapon("Killer bill", 15, 100, ItemRarity.Rare, "Katana", 100, new Enchantment(EnchantmentType.Fire));
-		weaponHandler.SetupWeapon(currentWeapon);
+		//weaponHandler.SetupWeapon(currentWeapon);
 	}
 
 	// Update is called once per frame

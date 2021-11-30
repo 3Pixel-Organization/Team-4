@@ -575,6 +575,7 @@ GameObject:
   - component: {fileID: 6420625541584645688}
   - component: {fileID: 7109755351331140156}
   - component: {fileID: 1727360315338898412}
+  - component: {fileID: 5338797907998538600}
   m_Layer: 9
   m_Name: Basic Motions Dummy
   m_TagString: Enemy
@@ -611,11 +612,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798111ce735bc0343a7fb355aee1ddf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   level: 0
   levelText: {fileID: 4143477227818206267}
   enemyPrefab: {fileID: 0}
   deathEffect: {fileID: 2879936912925386291, guid: c50557304c14f3d4fb2e6d8c4fd85316, type: 3}
   audioSource: {fileID: 0}
+  cooldown: 0
 --- !u!136 &7109755351331140156
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -649,6 +652,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &5338797907998538600
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951108370238162580}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4951108370238162582
 GameObject:
   m_ObjectHideFlags: 0

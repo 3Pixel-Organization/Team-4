@@ -23,5 +23,14 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Docks.unity
     guid: 7ad7c130dbd36ec40864aececb467388
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: cd4d9bbf0145bd648a224539972c3f14
+  - enabled: 1
+    path: Assets/Scenes/Core.unity
+    guid: 72c868659ca3f0e409725d1edb5c37ac
+  - enabled: 1
+    path: Assets/Scenes/_BootLoader.unity
+    guid: 2637578df07b3604b9b4bc43d84b8169
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 70140588b5404c946a6e2764ddc2accf, type: 2}

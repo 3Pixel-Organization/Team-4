@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EventSystem
 {
-	public class GameEvents : MonoBehaviour
+	public class GameEvents
 	{
 		public static GameEvents current;
 
@@ -15,9 +15,15 @@ namespace EventSystem
 		public LevelEvents level;
 		public EnemyEvents enemy;
 		public CombatEvents combat;
-		private void Awake()
+
+		[RuntimeInitializeOnLoadMethod()]
+		private static void Init()
 		{
-			current = this;
+			current = new GameEvents();
+		}
+
+		public GameEvents()
+		{
 			player = new PlayerEvents();
 			ui = new UIEvents();
 			spawn = new SpawnEvents();

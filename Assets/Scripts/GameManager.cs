@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 	public void SoftReset()
 	{
 		Debug.Log("Soft Reset");
-		Player.Instance.GetComponent<PlayerController>().MoveTo(lastResetPoint.position);
+		//Player.Instance.GetComponent<PlayerController>().MoveTo(lastResetPoint.position);
 		while (toDestroyOnReset.Count > 0)
 		{
 			Destroy(toDestroyOnReset[0]);
